@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#173c3b" />
+  <meta name="description" content="2026 四國六天五夜自駕行程，提供每日行程、住宿、停車提醒與 Google Maps 即時導航。" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <title>2026 四國自駕行｜行程導航</title>
+  <style>
+    :root {
+      --ink: #152322;
+      --muted: #5d6967;
+      --paper: #f5f5f0;
+      --surface: #ffffff;
+      --line: #d9dfda;
+      --forest: #173c3b;
+      --green: #237a63;
+      --sea: #167d9a;
+      --sun: #e1a622;
+      --coral: #d95d45;
+      --blue-soft: #e6f2f5;
+      --green-soft: #e7f2ed;
+      --amber-soft: #fff3d3;
+      --coral-soft: #fbe9e4;
+      --shadow: 0 5px 18px rgba(20, 41, 38, .08);
+      --radius: 8px;
+      --safe-bottom: max(16px, env(safe-area-inset-bottom));
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 132px; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.55;
+    }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    .icon { width: 18px; height: 18px; flex: 0 0 18px; }
+    .shell { width: min(100%, 980px); margin: 0 auto; }
+
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      color: #fff;
+      background: var(--forest);
+      border-bottom: 1px solid rgba(255,255,255,.14);
+    }
+    .header-main { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px 8px; }
+    .brand { min-width: 0; }
+    .brand h1 { margin: 0; font-size: 19px; line-height: 1.25; letter-spacing: 0; }
+    .brand p { margin: 2px 0 0; font-size: 12px; color: rgba(255,255,255,.76); }
+    .header-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: #fff;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: var(--radius);
+      text-decoration: none;
+    }
+    .day-tabs { display: flex; gap: 6px; overflow-x: auto; padding: 0 14px 10px; scrollbar-width: none; }
+    .day-tabs::-webkit-scrollbar { display: none; }
+    .day-tab {
+      flex: 0 0 auto;
+      min-width: 56px;
+      padding: 7px 10px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 6px;
+      color: rgba(255,255,255,.78);
+      background: transparent;
+      font-size: 12px;
+      font-weight: 750;
+      text-decoration: none;
+      text-align: center;
+    }
+    .day-tab.active { color: var(--forest); background: #fff; border-color: #fff; }
+
+    .hero { position: relative; min-height: 220px; overflow: hidden; background: #244b4a; }
+    .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 48%; }
+    .hero::after { content: ""; position: absolute; inset: 0; background: rgba(8, 25, 25, .54); }
+    .hero-content { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end; min-height: 220px; padding: 26px 16px 20px; color: #fff; }
+    .eyebrow { margin: 0 0 5px; font-size: 12px; font-weight: 800; color: #d7f3ec; }
+    .hero h2 { max-width: 620px; margin: 0; font-size: clamp(27px, 6vw, 42px); line-height: 1.14; letter-spacing: 0; }
+    .hero p { max-width: 650px; margin: 8px 0 0; color: rgba(255,255,255,.86); font-size: 14px; }
+
+    main { padding: 0 12px calc(80px + var(--safe-bottom)); }
+    .status-band { margin: -1px -12px 0; padding: 14px 12px; background: var(--surface); border-bottom: 1px solid var(--line); }
+    .status-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; }
+    .status-kicker { font-size: 12px; color: var(--muted); }
+    .status-value { margin-top: 2px; font-size: 17px; font-weight: 850; }
+    .countdown { min-width: 72px; padding: 9px 10px; color: var(--forest); background: var(--green-soft); border-radius: var(--radius); text-align: center; font-size: 12px; font-weight: 800; }
+
+    .quick-actions { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; margin: 14px 0 4px; }
+    .quick-action {
+      display: flex;
+      min-width: 0;
+      min-height: 68px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 8px 4px;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 750;
+      box-shadow: 0 2px 8px rgba(20,41,38,.04);
+    }
+    .quick-action .icon { color: var(--green); }
+
+    .section { padding: 24px 0 6px; }
+    .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+    .section-head h2 { margin: 0; font-size: 22px; letter-spacing: 0; }
+    .section-head p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+    .section-label { flex: 0 0 auto; color: var(--green); font-size: 12px; font-weight: 850; }
+
+    .info-list, .timeline { display: grid; gap: 9px; }
+    .info-row, .stop {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .info-row { display: grid; grid-template-columns: 42px 1fr auto; align-items: center; gap: 10px; padding: 12px; }
+    .info-icon { display: grid; place-items: center; width: 42px; height: 42px; color: var(--forest); background: var(--green-soft); border-radius: 7px; }
+    .info-title { margin: 0; font-size: 15px; font-weight: 850; }
+    .info-meta { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
+    .text-link { color: var(--sea); font-size: 12px; font-weight: 800; text-decoration: none; }
+
+    .day-section { padding: 28px 0 4px; }
+    .day-title { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; margin-bottom: 12px; }
+    .day-number { display: grid; place-items: center; width: 44px; height: 44px; color: #fff; background: var(--forest); border-radius: 7px; font-size: 13px; font-weight: 900; }
+    .day-title h2 { margin: 0; font-size: 21px; line-height: 1.25; }
+    .day-title p { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
+    .day-route { margin-bottom: 12px; padding: 11px 12px; color: #234640; background: var(--green-soft); border-left: 4px solid var(--green); border-radius: 0 7px 7px 0; font-size: 13px; font-weight: 700; }
+
+    .stop { position: relative; display: grid; grid-template-columns: 54px 1fr; gap: 9px 12px; padding: 13px; overflow: hidden; }
+    .stop::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--sea); }
+    .stop.shopping::before { background: var(--sun); }
+    .stop.hotel::before { background: var(--green); }
+    .stop.alert::before { background: var(--coral); }
+    .stop-time { padding-top: 2px; color: var(--muted); font-size: 12px; font-weight: 850; }
+    .stop-main { min-width: 0; }
+    .stop h3 { margin: 0; font-size: 16px; line-height: 1.35; letter-spacing: 0; }
+    .stop p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; }
+    .tag { padding: 3px 7px; color: #38504c; background: #edf1ef; border-radius: 5px; font-size: 11px; font-weight: 800; }
+    .tag.parking { color: #185b70; background: var(--blue-soft); }
+    .tag.warning { color: #8b3d2b; background: var(--coral-soft); }
+    .tag.shop { color: #795610; background: var(--amber-soft); }
+    .stop-actions { grid-column: 2; display: flex; flex-wrap: wrap; gap: 7px; }
+    .btn {
+      display: inline-flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 9px 12px;
+      color: #fff;
+      background: var(--forest);
+      border: 0;
+      border-radius: 7px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+    .btn.secondary { color: var(--forest); background: #edf2ef; border: 1px solid #cfd9d3; }
+    .btn.shop-btn { color: #513b09; background: var(--amber-soft); border: 1px solid #ead395; }
+    .btn.full { width: 100%; }
+
+    .drive-grid { display: grid; gap: 9px; }
+    .drive-note { padding: 13px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+    .drive-note h3 { display: flex; align-items: center; gap: 8px; margin: 0 0 5px; font-size: 15px; }
+    .drive-note p { margin: 0; color: var(--muted); font-size: 13px; }
+    details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); margin-top: 9px; }
+    summary { display: flex; align-items: center; gap: 8px; padding: 13px; font-weight: 850; cursor: pointer; }
+    details p, details ul { margin: 0; padding: 0 14px 14px; color: var(--muted); font-size: 13px; }
+    details ul { padding-left: 32px; }
+
+    .footer { margin: 28px -12px 0; padding: 20px 14px calc(16px + var(--safe-bottom)); color: #c8d6d2; background: #102d2c; font-size: 11px; text-align: center; }
+    .footer a { color: #d9efe9; }
+    .toast { position: fixed; left: 50%; bottom: calc(18px + var(--safe-bottom)); z-index: 80; padding: 10px 14px; color: #fff; background: #142322; border-radius: 7px; box-shadow: var(--shadow); transform: translate(-50%, 16px); opacity: 0; pointer-events: none; transition: .2s ease; font-size: 13px; font-weight: 800; }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+    @media (min-width: 720px) {
+      .header-main, .day-tabs { padding-left: 20px; padding-right: 20px; }
+      main { padding-left: 20px; padding-right: 20px; }
+      .status-band, .footer { margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; }
+      .quick-actions { grid-template-columns: repeat(4, 150px); justify-content: start; }
+      .info-list { grid-template-columns: 1fr 1fr; }
+      .drive-grid { grid-template-columns: repeat(3, 1fr); }
+      .stop { grid-template-columns: 66px 1fr auto; align-items: center; }
+      .stop-actions { grid-column: 3; grid-row: 1; align-self: center; justify-content: flex-end; max-width: 270px; }
+      .stop-actions .btn { min-width: 118px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="shell">
+      <div class="header-main">
+        <div class="brand">
+          <h1>2026 四國自駕行</h1>
+          <p>7/18–7/23｜高松・鳴門・直島・松山</p>
+        </div>
+        <a class="header-action" href="#drive" title="自駕提醒" aria-label="查看自駕提醒"><i data-lucide="car-front" class="icon"></i></a>
+      </div>
+      <nav class="day-tabs" aria-label="每日行程">
+        <a class="day-tab active" href="#overview">總覽</a>
+        <a class="day-tab" href="#day1">7/18</a>
+        <a class="day-tab" href="#day2">7/19</a>
+        <a class="day-tab" href="#day3">7/20</a>
+        <a class="day-tab" href="#day4">7/21</a>
+        <a class="day-tab" href="#day5">7/22</a>
+        <a class="day-tab" href="#day6">7/23</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <img src="./assets/naruto-strait.jpg" alt="從渦之道眺望鳴門海峽與大鳴門橋" />
+    <div class="hero-content shell">
+      <p class="eyebrow">6 DAYS · 5 NIGHTS · SELF DRIVE</p>
+      <h2 id="hero-title">瀨戶內海到道後溫泉的夏日公路旅行</h2>
+      <p>以住宿與實際車程為核心，提供每日停靠順序、停車提醒及 Google Maps 一鍵自駕導航。</p>
+    </div>
+  </section>
+
+  <main class="shell" id="overview">
+    <section class="status-band" aria-label="旅程狀態">
+      <div class="status-row">
+        <div>
+          <div class="status-kicker" id="statusKicker">距離出發</div>
+          <div class="status-value" id="statusValue">計算中</div>
+        </div>
+        <div class="countdown" id="countdown">2026/07/18</div>
+      </div>
+    </section>
+
+    <div class="quick-actions" aria-label="快速導航">
+      <a class="quick-action" data-nav="高松空港" href="#"><i data-lucide="plane" class="icon"></i><span>高松機場</span></a>
+      <a class="quick-action" data-nav="ホテルルートイン高松屋島" href="#"><i data-lucide="bed-double" class="icon"></i><span>高松住宿</span></a>
+      <a class="quick-action" data-nav="道後温泉 ホテル古湧園 遥" href="#"><i data-lucide="waves" class="icon"></i><span>道後住宿</span></a>
+      <a class="quick-action" href="https://www.google.com/maps/@33.7593704,133.0204664,9z/data=!4m6!1m2!10m1!1e1!11m2!2sdigkfYKJXHUNUL35KhqZbQ!3e3" target="_blank" rel="noopener"><i data-lucide="map" class="icon"></i><span>景點清單</span></a>
+    </div>
+
+    <section class="section" aria-labelledby="essentials-title">
+      <div class="section-head">
+        <div><h2 id="essentials-title">旅行核心資訊</h2><p>航班與住宿已確認</p></div>
+        <span class="section-label">FRNJVB</span>
+      </div>
+      <div class="info-list">
+        <div class="info-row">
+          <div class="info-icon"><i data-lucide="plane-takeoff" class="icon"></i></div>
+          <div><p class="info-title">CI0178｜桃園 → 高松</p><p class="info-meta">7/18 14:30 起飛 · 18:05 抵達</p></div>
+          <a class="text-link" data-nav="高松空港" href="#">導航</a>
+        </div>
+        <div class="info-row">
+          <div class="info-icon"><i data-lucide="plane-landing" class="icon"></i></div>
+          <div><p class="info-title">CI0179｜高松 → 桃園</p><p class="info-meta">7/23 19:05 起飛 · 20:55 抵達</p></div>
+          <a class="text-link" data-nav="高松空港" href="#">導航</a>
+        </div>
+        <div class="info-row">
+          <div class="info-icon"><i data-lucide="hotel" class="icon"></i></div>
+          <div><p class="info-title">Hotel Route Inn Takamatsu Yashima</p><p class="info-meta">7/18 15:00–7/21 10:00 · 3 晚</p></div>
+          <a class="text-link" data-nav="ホテルルートイン高松屋島" href="#">導航</a>
+        </div>
+        <div class="info-row">
+          <div class="info-icon"><i data-lucide="bath" class="icon"></i></div>
+          <div><p class="info-title">Kowakuen Haruka</p><p class="info-meta">7/21 15:00–7/23 11:00 · 2 晚</p></div>
+          <a class="text-link" data-nav="道後温泉 ホテル古湧園 遥" href="#">導航</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="day-section" id="day1" data-section="day1">
+      <div class="day-title"><div class="day-number">D1</div><div><h2>7/18 六｜抵達高松・取車</h2><p>桃園 → 高松機場 → 屋島住宿</p></div></div>
+      <div class="day-route">抵達日晚間不排長途；先熟悉右駕、車況及 ETC，再依體力購物。</div>
+      <div class="timeline">
+        <article class="stop alert">
+          <time class="stop-time">14:30</time><div class="stop-main"><h3>CI0178 桃園起飛</h3><p>預計 18:05 抵達高松機場，訂位代號 FRNJVB。</p><div class="tags"><span class="tag warning">航班</span></div></div>
+        </article>
+        <article class="stop">
+          <time class="stop-time">18:05</time><div class="stop-main"><h3>高松機場・租車</h3><p>領車時確認 ETC 卡、車損、油種與還車位置；手機先連接車機。</p><div class="tags"><span class="tag parking">取車</span><span class="tag warning">右駕適應</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="高松空港" href="#"><i data-lucide="navigation" class="icon"></i>導航</a></div>
+        </article>
+        <article class="stop hotel">
+          <time class="stop-time">約 20:00</time><div class="stop-main"><h3>Hotel Route Inn Takamatsu Yashima</h3><p>辦理入住、停車並吃晚餐。若延誤，購物直接移到 7/19。</p><div class="tags"><span class="tag parking">飯店停車</span><span class="tag">連住 3 晚</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="ホテルルートイン高松屋島" href="#"><i data-lucide="navigation" class="icon"></i>導航住宿</a></div>
+        </article>
+        <article class="stop shopping">
+          <time class="stop-time">備選</time><div class="stop-main"><h3>唐吉訶德屋島店</h3><p>住宿附近、營業至凌晨 2:00；抵達日有精神再去。</p><div class="tags"><span class="tag shop">購物</span><span class="tag parking">有停車場</span></div></div>
+          <div class="stop-actions"><a class="btn shop-btn" data-nav="ドン・キホーテ屋島店" href="#"><i data-lucide="shopping-bag" class="icon"></i>開車前往</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="day-section" id="day2" data-section="day2">
+      <div class="day-title"><div class="day-number">D2</div><div><h2>7/19 日｜鳴門海峽一日遊</h2><p>屋島 → 鳴門公園 → 屋島購物</p></div></div>
+      <div class="day-route">觀潮時間優先於固定時刻。出發前以渦之道官方潮見表調整抵達時間。</div>
+      <div class="timeline">
+        <article class="stop">
+          <time class="stop-time">上午</time><div class="stop-main"><h3>大鳴門橋遊步道・渦之道</h3><p>先看潮汐，再倒推飯店出發時間。鳴門公園停車後步行前往。</p><div class="tags"><span class="tag parking">鳴門公園停車</span><span class="tag warning">依潮汐調整</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="大鳴門橋遊歩道 渦の道" href="#"><i data-lucide="navigation" class="icon"></i>導航</a><a class="btn secondary" href="https://www.uzunomichi.jp/" target="_blank" rel="noopener"><i data-lucide="waves" class="icon"></i>潮汐資訊</a></div>
+        </article>
+        <article class="stop">
+          <time class="stop-time">接續</time><div class="stop-main"><h3>鳴門山展望台</h3><p>與渦之道同區域，安排海峽全景與短程散步。</p><div class="tags"><span class="tag">展望台</span><span class="tag warning">夏季補水</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="鳴門山展望台" href="#"><i data-lucide="navigation" class="icon"></i>導航</a></div>
+        </article>
+        <article class="stop shopping">
+          <time class="stop-time">18:00 前</time><div class="stop-main"><h3>WORKMAN 高松新田店</h3><p>鳴門回程優先逛，20:00 關門；想買防曬、機能服與鞋類可多留時間。</p><div class="tags"><span class="tag shop">優先購物</span><span class="tag parking">8 個車位</span></div></div>
+          <div class="stop-actions"><a class="btn shop-btn" data-nav="ワークマン高松新田店" href="#"><i data-lucide="shopping-bag" class="icon"></i>導航</a></div>
+        </article>
+        <article class="stop shopping">
+          <time class="stop-time">備選</time><div class="stop-main"><h3>Yamada Denki 高松春日本店</h3><p>四國沒有 Bic Camera，這間是住宿附近的大型免稅家電替代店，營業至 21:00。</p><div class="tags"><span class="tag shop">家電</span><span class="tag shop">免稅</span></div></div>
+          <div class="stop-actions"><a class="btn shop-btn" data-nav="Tecc LIFE SELECT 高松春日本店" href="#"><i data-lucide="monitor-smartphone" class="icon"></i>導航</a></div>
+        </article>
+        <article class="stop shopping">
+          <time class="stop-time">晚間</time><div class="stop-main"><h3>唐吉訶德屋島店</h3><p>Workman 關門後再逛；若 7/18 已完成可直接回飯店。</p><div class="tags"><span class="tag shop">營業至 02:00</span></div></div>
+          <div class="stop-actions"><a class="btn shop-btn" data-nav="ドン・キホーテ屋島店" href="#"><i data-lucide="shopping-cart" class="icon"></i>導航</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="day-section" id="day3" data-section="day3">
+      <div class="day-title"><div class="day-number">D3</div><div><h2>7/20 一｜直島藝術日</h2><p>屋島 → 高松港停車 → 直島 → 屋島</p></div></div>
+      <div class="day-route">海之日國定假日。汽車留在高松港，不開上島；船班與美術館預約是本日核心。</div>
+      <div class="timeline">
+        <article class="stop alert">
+          <time class="stop-time">早上</time><div class="stop-main"><h3>高松港周邊停車</h3><p>至少比預定船班提早 45–60 分鐘抵達，假日需預留找停車位與步行時間。</p><div class="tags"><span class="tag parking">汽車留高松</span><span class="tag warning">海之日</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="高松港旅客ターミナルビル" href="#"><i data-lucide="navigation" class="icon"></i>導航港口</a><a class="btn secondary" href="https://www.shikokukisen.com/" target="_blank" rel="noopener"><i data-lucide="ship" class="icon"></i>船班官網</a></div>
+        </article>
+        <article class="stop">
+          <time class="stop-time">依船班</time><div class="stop-main"><h3>四國汽船・宮浦港</h3><p>抵達後依預約時段安排島內巴士、步行或租借腳踏車。</p><div class="tags"><span class="tag">宮浦港</span><span class="tag warning">留意末班船</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="直島 宮浦港" href="#"><i data-lucide="map-pin" class="icon"></i>Google Maps</a></div>
+        </article>
+        <article class="stop">
+          <time class="stop-time">預約時段</time><div class="stop-main"><h3>地中美術館</h3><p>以預約入場時間作為全日行程錨點，避免島上交通延誤。</p><div class="tags"><span class="tag warning">網路預約制</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="地中美術館 直島" href="#"><i data-lucide="map-pin" class="icon"></i>Google Maps</a><a class="btn secondary" href="https://benesse-artsite.jp/art/chichu.html" target="_blank" rel="noopener"><i data-lucide="ticket-check" class="icon"></i>官方資訊</a></div>
+        </article>
+        <article class="stop">
+          <time class="stop-time">下午</time><div class="stop-main"><h3>Benesse House Museum・南瓜作品</h3><p>依體力安排美術館、戶外作品、黃南瓜與回宮浦港前的赤南瓜。</p><div class="tags"><span class="tag">藝術</span><span class="tag warning">戶外防曬</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="Benesse House Museum Naoshima" href="#"><i data-lucide="map-pin" class="icon"></i>美術館</a><a class="btn secondary" data-nav="草間彌生 赤かぼちゃ 直島" href="#"><i data-lucide="map-pin" class="icon"></i>赤南瓜</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="day-section" id="day4" data-section="day4">
+      <div class="day-title"><div class="day-number">D4</div><div><h2>7/21 二｜香川文化線 → 道後</h2><p>屋島 → 善通寺 → 琴平 → 丸龜 → 松山</p></div></div>
+      <div class="day-route">本次最長的多站移動日。金刀比羅宮優先，時間不足時縮短善通寺或丸龜城。</div>
+      <div class="timeline">
+        <article class="stop hotel">
+          <time class="stop-time">08:30</time><div class="stop-main"><h3>高松住宿退房</h3><p>雖然最晚 10:00 退房，建議提早出發避開金刀比羅宮正午暑熱。</p><div class="tags"><span class="tag">退房</span><span class="tag warning">行李放車內</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="総本山善通寺" href="#"><i data-lucide="navigation" class="icon"></i>前往善通寺</a></div>
+        </article>
+        <article class="stop">
+          <time class="stop-time">09:30</time><div class="stop-main"><h3>總本山善通寺</h3><p>文化停靠點，建議停留約 45–60 分鐘。</p><div class="tags"><span class="tag parking">周邊停車</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="総本山善通寺" href="#"><i data-lucide="navigation" class="icon"></i>導航</a></div>
+        </article>
+        <article class="stop alert">
+          <time class="stop-time">11:00</time><div class="stop-main"><h3>琴平・金刀比羅宮</h3><p>表參道、階梯參拜與午餐。夏季炎熱，補水並依體力決定攀登高度。</p><div class="tags"><span class="tag parking">表參道停車</span><span class="tag warning">785 階</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="金刀比羅宮" href="#"><i data-lucide="navigation" class="icon"></i>導航</a></div>
+        </article>
+        <article class="stop">
+          <time class="stop-time">14:30</time><div class="stop-main"><h3>丸龜城</h3><p>以天守與城景為主，預計停留 60–90 分鐘。</p><div class="tags"><span class="tag parking">市營停車場</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="丸亀城" href="#"><i data-lucide="navigation" class="icon"></i>導航</a></div>
+        </article>
+        <article class="stop shopping">
+          <time class="stop-time">備選</time><div class="stop-main"><h3>唐吉訶德丸龜店</h3><p>只有景點提早完成才加入；不應壓縮前往松山與道後晚餐時間。</p><div class="tags"><span class="tag shop">購物備案</span><span class="tag parking">215 車位</span></div></div>
+          <div class="stop-actions"><a class="btn shop-btn" data-nav="ドン・キホーテ丸亀店" href="#"><i data-lucide="shopping-cart" class="icon"></i>導航</a></div>
+        </article>
+        <article class="stop hotel">
+          <time class="stop-time">17:30–18:30</time><div class="stop-main"><h3>Kowakuen Haruka 入住</h3><p>入住後把車留飯店，晚上步行逛道後商店街與泡湯。</p><div class="tags"><span class="tag parking">飯店停車</span><span class="tag">連住 2 晚</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="道後温泉 ホテル古湧園 遥" href="#"><i data-lucide="navigation" class="icon"></i>導航住宿</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="day-section" id="day5" data-section="day5">
+      <div class="day-title"><div class="day-number">D5</div><div><h2>7/22 三｜松山城・大街道・道後</h2><p>松山市區觀光與購物日</p></div></div>
+      <div class="day-route">市區停車後以步行或路面電車串聯。晚上回道後溫泉，不必一直移動車輛。</div>
+      <div class="timeline">
+        <article class="stop">
+          <time class="stop-time">09:00</time><div class="stop-main"><h3>松山城・纜車街</h3><p>上午先登城避開暑熱；導航至纜車東雲口附近停車場。</p><div class="tags"><span class="tag parking">市區收費停車</span><span class="tag warning">上午優先</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="松山城ロープウェイのりば東雲口" href="#"><i data-lucide="navigation" class="icon"></i>導航</a></div>
+        </article>
+        <article class="stop shopping">
+          <time class="stop-time">中午起</time><div class="stop-main"><h3>大街道・唐吉訶德松山大街道店</h3><p>午餐後沿大街道逛街，唐吉訶德直接排在步行動線中。</p><div class="tags"><span class="tag shop">購物</span><span class="tag">松山鯛飯</span></div></div>
+          <div class="stop-actions"><a class="btn shop-btn" data-nav="ドン・キホーテ松山大街道店" href="#"><i data-lucide="shopping-cart" class="icon"></i>導航</a></div>
+        </article>
+        <article class="stop">
+          <time class="stop-time">下午</time><div class="stop-main"><h3>銀天街</h3><p>從大街道接續逛街與咖啡，依體力決定停留時間。</p><div class="tags"><span class="tag">商店街</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="松山銀天街" href="#"><i data-lucide="map-pin" class="icon"></i>Google Maps</a></div>
+        </article>
+        <article class="stop hotel">
+          <time class="stop-time">傍晚</time><div class="stop-main"><h3>道後溫泉本館・道後商店街</h3><p>返回飯店後步行前往，安排泡湯、晚餐與伴手禮。</p><div class="tags"><span class="tag">步行</span><span class="tag">溫泉</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="道後温泉本館" href="#"><i data-lucide="map-pin" class="icon"></i>道後本館</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="day-section" id="day6" data-section="day6">
+      <div class="day-title"><div class="day-number">D6</div><div><h2>7/23 四｜松山 → 高松機場</h2><p>退房・高速移動・還車・返台</p></div></div>
+      <div class="day-route">建議 15:30 抵達租車公司附近。還車前加滿指定油種，保留塞車與接駁緩衝。</div>
+      <div class="timeline">
+        <article class="stop hotel">
+          <time class="stop-time">11:00 前</time><div class="stop-main"><h3>Kowakuen Haruka 退房</h3><p>確認行李、停車券與車內物品後出發。</p><div class="tags"><span class="tag">退房</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="WORKMAN Plus 松山インター店" href="#"><i data-lucide="navigation" class="icon"></i>前往下一站</a></div>
+        </article>
+        <article class="stop shopping">
+          <time class="stop-time">備選</time><div class="stop-main"><h3>WORKMAN Plus 松山交流道店</h3><p>高松店未買齊才停靠；逛完直接由松山交流道上高速。</p><div class="tags"><span class="tag shop">最後補買</span><span class="tag parking">17 車位</span></div></div>
+          <div class="stop-actions"><a class="btn shop-btn" data-nav="WORKMAN Plus 松山インター店" href="#"><i data-lucide="shopping-bag" class="icon"></i>導航</a></div>
+        </article>
+        <article class="stop alert">
+          <time class="stop-time">15:00 前後</time><div class="stop-main"><h3>機場附近加油・租車還車</h3><p>依租車公司規定加滿油並保留收據；確認 ETC、車機與座椅縫隙沒有遺留物。</p><div class="tags"><span class="tag warning">加滿油</span><span class="tag warning">保留收據</span></div></div>
+          <div class="stop-actions"><a class="btn" data-nav="高松空港" href="#"><i data-lucide="navigation" class="icon"></i>導航機場</a></div>
+        </article>
+        <article class="stop">
+          <time class="stop-time">19:05</time><div class="stop-main"><h3>CI0179 高松起飛</h3><p>預計 20:55 抵達桃園機場。</p><div class="tags"><span class="tag warning">國際線</span></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="drive" aria-labelledby="drive-title">
+      <div class="section-head"><div><h2 id="drive-title">自駕備忘</h2><p>出發前與每天上車前快速確認</p></div><span class="section-label">DRIVE</span></div>
+      <div class="drive-grid">
+        <div class="drive-note"><h3><i data-lucide="badge-japanese-yen" class="icon"></i>高速與 ETC</h3><p>確認租車是否附 ETC 卡；交流道依導航走 ETC 或一般車道，保留現金與信用卡備用。</p></div>
+        <div class="drive-note"><h3><i data-lucide="fuel" class="icon"></i>加油與還車</h3><p>確認汽油種類。7/23 還車前加滿，收據留到完成驗車為止。</p></div>
+        <div class="drive-note"><h3><i data-lucide="parking-circle" class="icon"></i>停車策略</h3><p>直島日把車留高松港；松山市區固定停一次，再改用步行或路面電車。</p></div>
+      </div>
+      <details><summary><i data-lucide="shield-alert" class="icon"></i>右駕與夏季安全</summary><ul><li>轉彎後提醒自己回到左側車道，路口特別注意。</li><li>山路或窄路不勉強超車，導航若導入小路可改走較大的國道。</li><li>每 90–120 分鐘安排休息；車內不可留下行李或電子產品曝曬。</li></ul></details>
+      <details><summary><i data-lucide="cloud-rain" class="icon"></i>雨天替代原則</summary><p>鳴門強風或直島船班異動時，優先保留安全與預約；購物點可移到雨天，戶外景點縮短。</p></details>
+      <details><summary><i data-lucide="lock-keyhole" class="icon"></i>公開頁面隱私</summary><p>GitHub Pages 是公開網站。不要加入護照、房號、訂房姓名、租車合約編號或私人電話。</p></details>
+    </section>
+
+    <footer class="footer">
+      <p>最後更新：2026-06-22｜現場時間、船班、潮汐與交通狀況以官方資訊及 Google Maps 為準。</p>
+      <p>照片：<a href="https://commons.wikimedia.org/wiki/File:Naruto_Strait_from_Uzunomichi_Promenade.jpg" target="_blank" rel="noopener">Soramimi / Wikimedia Commons</a>，CC BY-SA 4.0。</p>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">已開啟 Google Maps</div>
+  <script src="./assets/lucide.min.js"></script>
+  <script>
+    const tripStart = new Date('2026-07-18T00:00:00+09:00');
+    const tripEnd = new Date('2026-07-23T23:59:59+09:00');
+
+    function mapsUrl(destination) {
+      return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}&travelmode=driving`;
+    }
+
+    document.querySelectorAll('[data-nav]').forEach(link => {
+      link.href = mapsUrl(link.dataset.nav);
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.addEventListener('click', () => showToast(`導航：${link.dataset.nav}`));
+    });
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      window.setTimeout(() => toast.classList.remove('show'), 1600);
+    }
+
+    function updateTripStatus() {
+      const now = new Date();
+      const kicker = document.getElementById('statusKicker');
+      const value = document.getElementById('statusValue');
+      const countdown = document.getElementById('countdown');
+      if (now < tripStart) {
+        const days = Math.ceil((tripStart - now) / 86400000);
+        kicker.textContent = '距離出發';
+        value.textContent = `${days} 天後前往四國`;
+        countdown.textContent = '7/18 出發';
+      } else if (now <= tripEnd) {
+        const day = Math.min(6, Math.floor((now - tripStart) / 86400000) + 1);
+        kicker.textContent = '旅程進行中';
+        value.textContent = `今天是 Day ${day}`;
+        countdown.textContent = '自駕中';
+      } else {
+        kicker.textContent = '旅程已結束';
+        value.textContent = '四國自駕行程紀錄';
+        countdown.textContent = '6 天 5 夜';
+      }
+    }
+
+    const trackedSections = [...document.querySelectorAll('[data-section]'), document.getElementById('overview')];
+    const tabs = [...document.querySelectorAll('.day-tab')];
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      const id = visible.target.id;
+      tabs.forEach(tab => tab.classList.toggle('active', tab.getAttribute('href') === `#${id}`));
+    }, { rootMargin: '-125px 0px -62% 0px', threshold: [0, .15, .5] });
+    trackedSections.forEach(section => observer.observe(section));
+
+    updateTripStatus();
+    if (window.lucide) window.lucide.createIcons();
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+    }
+  </script>
+</body>
+</html>
