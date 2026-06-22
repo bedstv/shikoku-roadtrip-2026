@@ -1,7 +1,8 @@
-const CACHE = 'shikoku-roadtrip-2026-v2';
+const CACHE = 'shikoku-roadtrip-2026-v4';
 const ASSETS = [
   './',
   './index.html',
+  './data.js',
   './manifest.webmanifest',
   './assets/naruto-strait.jpg',
   './assets/lucide.min.js'
@@ -19,8 +20,30 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
+function shouldUseNetworkFirst(request) {
+  const url = new URL(request.url);
+  if (url.origin !== self.location.origin) return false;
+  return url.pathname.endsWith('/') || url.pathname.endsWith('/index.html') || url.pathname.endsWith('/data.js') || url.pathname.endsWith('/sw.js');
+}
+
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
+
+  if (shouldUseNetworkFirst(event.request)) {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          if (response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE).then(cache => cache.put(event.request, copy));
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request).then(cached => cached || caches.match('./index.html')))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then(cached => {
       if (cached) return cached;
