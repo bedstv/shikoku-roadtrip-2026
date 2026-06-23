@@ -1,8 +1,9 @@
-const CACHE = 'shikoku-roadtrip-2026-v10';
+const CACHE = 'shikoku-roadtrip-2026-v11';
 const ASSETS = [
   './',
   './index.html',
   './guide.html',
+  './shopping.html',
   './data.js',
   './manifest.webmanifest',
   './assets/naruto-strait.jpg',
