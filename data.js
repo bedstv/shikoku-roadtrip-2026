@@ -13,8 +13,8 @@ window.TRIP_DATA = {
     "eyebrow": "6 DAYS · 5 NIGHTS · SELF DRIVE",
     "heroTitle": "瀨戶內海到道後溫泉的夏日公路旅行",
     "heroText": "以住宿與實際車程為核心，提供每日停靠順序、停車提醒及 Google Maps 一鍵自駕導航。",
-    "updatedAt": "2026-06-23 10:39",
-    "version": "WORKMAN Plus 修正版 v6",
+    "updatedAt": "2026-06-23 20:58",
+    "version": "家人介紹入口 v7",
     "photoCreditText": "Soramimi / Wikimedia Commons，CC BY-SA 4.0",
     "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Naruto_Strait_from_Uzunomichi_Promenade.jpg",
     "disclaimer": "現場時間、船班、潮汐與交通狀況以官方資訊及 Google Maps 為準。"
@@ -23,7 +23,8 @@ window.TRIP_DATA = {
     { "icon": "plane", "label": "高松機場", "nav": "高松空港" },
     { "icon": "bed-double", "label": "高松住宿", "nav": "ホテルルートイン高松屋島" },
     { "icon": "waves", "label": "道後住宿", "nav": "道後温泉 ホテル古湧園 遥" },
-    { "icon": "map", "label": "景點清單", "url": "https://www.google.com/maps/@33.7593704,133.0204664,9z/data=!4m6!1m2!10m1!1e1!11m2!2sdigkfYKJXHUNUL35KhqZbQ!3e3" }
+    { "icon": "map", "label": "景點清單", "url": "https://www.google.com/maps/@33.7593704,133.0204664,9z/data=!4m6!1m2!10m1!1e1!11m2!2sdigkfYKJXHUNUL35KhqZbQ!3e3" },
+    { "icon": "book-open", "label": "家人介紹", "url": "./guide.html" }
   ],
   "essentials": [
     { "icon": "plane-takeoff", "title": "CI0178｜桃園 → 高松", "meta": "7/18 14:30 起飛 · 18:05 抵達", "nav": "高松空港" },
