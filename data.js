@@ -13,9 +13,8 @@ window.TRIP_DATA = {
     "eyebrow": "6 DAYS · 5 NIGHTS · SELF DRIVE",
     "heroTitle": "瀨戶內海到道後溫泉的夏日公路旅行",
     "heroText": "以住宿與實際車程為核心，提供每日停靠順序、停車提醒及 Google Maps 一鍵自駕導航。",
-    "updatedAt": "2026-06-22 23:13",
-    "version": "資料分離修正版 v5",
-    "bookingCode": "FRNJVB",
+    "updatedAt": "2026-06-23 10:39",
+    "version": "WORKMAN Plus 修正版 v6",
     "photoCreditText": "Soramimi / Wikimedia Commons，CC BY-SA 4.0",
     "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Naruto_Strait_from_Uzunomichi_Promenade.jpg",
     "disclaimer": "現場時間、船班、潮汐與交通狀況以官方資訊及 Google Maps 為準。"
@@ -41,7 +40,7 @@ window.TRIP_DATA = {
       "subtitle": "桃園 → 高松機場 → 屋島住宿",
       "route": "抵達日晚間不排長途；先熟悉右駕、車況及 ETC，再依體力購物。",
       "stops": [
-        { "time": "14:30", "type": "alert", "title": "CI0178 桃園起飛", "description": "預計 18:05 抵達高松機場，訂位代號 FRNJVB。", "tags": [{ "text": "航班", "kind": "warning" }] },
+        { "time": "14:30", "type": "alert", "title": "CI0178 桃園起飛", "description": "預計 18:05 抵達高松機場。", "tags": [{ "text": "航班", "kind": "warning" }] },
         { "time": "18:05", "title": "高松機場・租車", "description": "領車時確認 ETC 卡、車損、油種與還車位置；手機先連接車機。", "tags": [{ "text": "取車", "kind": "parking" }, { "text": "右駕適應", "kind": "warning" }], "actions": [{ "label": "導航", "icon": "navigation", "nav": "高松空港" }] },
         { "time": "約 20:00", "type": "hotel", "title": "Hotel Route Inn Takamatsu Yashima", "description": "辦理入住、停車並吃晚餐。若延誤，購物直接移到 7/19。", "tags": [{ "text": "飯店停車", "kind": "parking" }, { "text": "連住 3 晚" }], "actions": [{ "label": "導航住宿", "icon": "navigation", "nav": "ホテルルートイン高松屋島" }] },
         { "time": "備選", "type": "shopping", "title": "唐吉訶德屋島店", "description": "住宿附近、營業至凌晨 2:00；抵達日有精神再去。", "tags": [{ "text": "購物", "kind": "shop" }, { "text": "有停車場", "kind": "parking" }], "actions": [{ "label": "開車前往", "icon": "shopping-bag", "nav": "ドン・キホーテ屋島店", "kind": "shop" }] }
@@ -57,7 +56,7 @@ window.TRIP_DATA = {
       "stops": [
         { "time": "上午", "title": "大鳴門橋遊步道・渦之道", "description": "先看潮汐，再倒推飯店出發時間。鳴門公園停車後步行前往。", "tags": [{ "text": "鳴門公園停車", "kind": "parking" }, { "text": "依潮汐調整", "kind": "warning" }], "actions": [{ "label": "導航", "icon": "navigation", "nav": "大鳴門橋遊歩道 渦の道" }, { "label": "潮汐資訊", "icon": "waves", "url": "https://www.uzunomichi.jp/", "kind": "secondary" }] },
         { "time": "接續", "title": "鳴門山展望台", "description": "與渦之道同區域，安排海峽全景與短程散步。", "tags": [{ "text": "展望台" }, { "text": "夏季補水", "kind": "warning" }], "actions": [{ "label": "導航", "icon": "navigation", "nav": "鳴門山展望台" }] },
-        { "time": "18:00 前", "type": "shopping", "title": "WORKMAN 高松新田店", "description": "鳴門回程優先逛，20:00 關門；想買防曬、機能服與鞋類可多留時間。", "tags": [{ "text": "優先購物", "kind": "shop" }, { "text": "8 個車位", "kind": "parking" }], "actions": [{ "label": "導航", "icon": "shopping-bag", "nav": "ワークマン高松新田店", "kind": "shop" }] },
+        { "time": "18:00 前", "type": "shopping", "title": "WORKMAN Plus 高松十川東店", "description": "鳴門回程改逛 WORKMAN Plus 店型，20:00 關門；想買防曬、機能服與鞋類可多留時間。", "tags": [{ "text": "優先購物", "kind": "shop" }, { "text": "16 個車位", "kind": "parking" }], "actions": [{ "label": "導航", "icon": "shopping-bag", "nav": "WORKMAN Plus 高松十川東店", "kind": "shop" }] },
         { "time": "備選", "type": "shopping", "title": "Yamada Denki 高松春日本店", "description": "四國沒有 Bic Camera，這間是住宿附近的大型免稅家電替代店，營業至 21:00。", "tags": [{ "text": "家電", "kind": "shop" }, { "text": "免稅", "kind": "shop" }], "actions": [{ "label": "導航", "icon": "monitor-smartphone", "nav": "Tecc LIFE SELECT 高松春日本店", "kind": "shop" }] },
         { "time": "晚間", "type": "shopping", "title": "唐吉訶德屋島店", "description": "Workman 關門後再逛；若 7/18 已完成可直接回飯店。", "tags": [{ "text": "營業至 02:00", "kind": "shop" }], "actions": [{ "label": "導航", "icon": "shopping-cart", "nav": "ドン・キホーテ屋島店", "kind": "shop" }] }
       ]
