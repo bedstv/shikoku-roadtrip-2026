@@ -5,261 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="robots" content="noindex,nofollow" />
   <meta name="theme-color" content="#173c3b" />
-  <meta name="description" content="2026 四國自駕旅行家人介紹版，提供每日亮點、景點背景、照片與簡單提醒。" />
+  <meta name="description" content="2026 四國自駕旅行家人介紹版，提供四國介紹、航班住宿、旅程總覽、每日亮點與景點背景。" />
   <title>2026 四國自駕行｜家人介紹</title>
   <style>
-    :root {
-      --ink: #152322;
-      --muted: #5d6967;
-      --paper: #f5f5f0;
-      --surface: #ffffff;
-      --line: #d9dfda;
-      --forest: #173c3b;
-      --green: #237a63;
-      --sea: #167d9a;
-      --sun: #e1a622;
-      --coral: #d95d45;
-      --blue-soft: #e6f2f5;
-      --green-soft: #e7f2ed;
-      --amber-soft: #fff3d3;
-      --coral-soft: #fbe9e4;
-      --shadow: 0 5px 18px rgba(20, 41, 38, .08);
-      --radius: 10px;
-      --safe-bottom: max(18px, env(safe-area-inset-bottom));
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 126px; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--paper);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-      line-height: 1.6;
-    }
-    a, button { -webkit-tap-highlight-color: transparent; }
-    .shell { width: min(100%, 980px); margin: 0 auto; }
-    .app-header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      color: #fff;
-      background: var(--forest);
-      border-bottom: 1px solid rgba(255,255,255,.14);
-    }
-    .header-main { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px 8px; }
-    .brand { min-width: 0; }
-    .brand h1 { margin: 0; font-size: 19px; line-height: 1.25; }
-    .brand p { margin: 2px 0 0; font-size: 12px; color: rgba(255,255,255,.78); }
-    .version-info { display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; padding: 2px 7px; color: #d7f3ec; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.18); border-radius: 999px; font-size: 11px; font-weight: 800; }
-    .nav-tabs { display: flex; gap: 6px; overflow-x: auto; padding: 0 14px 10px; scrollbar-width: none; }
-    .nav-tabs::-webkit-scrollbar { display: none; }
-    .nav-tab { flex: 0 0 auto; min-width: 72px; padding: 7px 10px; border: 1px solid rgba(255,255,255,.2); border-radius: 6px; color: rgba(255,255,255,.8); background: transparent; font-size: 12px; font-weight: 780; text-align: center; text-decoration: none; }
-    .nav-tab.active { color: var(--forest); background: #fff; border-color: #fff; }
-
-    .hero { position: relative; min-height: 300px; overflow: hidden; background: #244b4a; }
-    .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-    .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,28,28,.35), rgba(10,28,28,.78)); }
-    .hero-content { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; padding: 36px 16px 24px; color: #fff; }
-    .eyebrow { margin: 0 0 6px; font-size: 12px; font-weight: 850; color: #d7f3ec; letter-spacing: .08em; }
-    .hero h2 { max-width: 680px; margin: 0; font-size: clamp(30px, 7vw, 48px); line-height: 1.12; }
-    .hero p { max-width: 720px; margin: 10px 0 0; color: rgba(255,255,255,.88); font-size: 15px; }
-
-    main { padding: 0 12px calc(76px + var(--safe-bottom)); }
-    .section { padding: 26px 0 4px; }
-    .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
-    .section-head h2 { margin: 0; font-size: 22px; }
-    .section-head p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
-    .section-label { flex: 0 0 auto; color: var(--green); font-size: 12px; font-weight: 850; }
-
-    .intro-card { margin-top: -18px; position: relative; z-index: 2; padding: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
-    .intro-card h2 { margin: 0 0 6px; font-size: 20px; }
-    .intro-card p { margin: 0; color: var(--muted); font-size: 14px; }
-
-    .theme-grid, .day-grid, .source-grid { display: grid; gap: 10px; }
-    .theme-card, .source-card { padding: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
-    .theme-card h3, .source-card h3 { margin: 0 0 6px; font-size: 16px; }
-    .theme-card p, .source-card p { margin: 0; color: var(--muted); font-size: 13px; }
-
-    .day-card { display: grid; grid-template-columns: 108px 1fr; overflow: hidden; min-height: 138px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
-    .day-card img { width: 100%; height: 100%; object-fit: cover; background: var(--green-soft); }
-    .day-content { padding: 12px; }
-    .day-kicker { color: var(--green); font-size: 12px; font-weight: 850; }
-    .day-content h3 { margin: 2px 0 5px; font-size: 17px; }
-    .day-content p { margin: 0; color: var(--muted); font-size: 13px; }
-    .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
-    .tag { padding: 3px 7px; color: #38504c; background: #edf1ef; border-radius: 999px; font-size: 11px; font-weight: 800; }
-    .tag.sea { color: #185b70; background: var(--blue-soft); }
-    .tag.warn { color: #8b3d2b; background: var(--coral-soft); }
-    .tag.art { color: #5a4574; background: #eee8f6; }
-
-    .place-grid { display: grid; gap: 14px; }
-    .place-card { overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
-    .photo { position: relative; aspect-ratio: 16 / 9; background: var(--green-soft); overflow: hidden; }
-    .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .place-badge { position: absolute; left: 10px; bottom: 10px; display: flex; flex-wrap: wrap; gap: 5px; }
-    .place-badge span { padding: 4px 7px; color: #fff; background: rgba(12,36,35,.82); border: 1px solid rgba(255,255,255,.18); border-radius: 999px; font-size: 11px; font-weight: 850; backdrop-filter: blur(4px); }
-    .place-body { padding: 14px; }
-    .place-body h3 { margin: 0; font-size: 19px; }
-    .one-liner { margin: 5px 0 0; color: var(--muted); font-size: 14px; }
-    .place-detail { margin-top: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fbfcfb; }
-    .place-detail summary { padding: 11px 12px; cursor: pointer; font-weight: 850; color: var(--forest); }
-    .detail-block { display: grid; gap: 12px; padding: 0 12px 13px; }
-    .detail-block h4 { margin: 0 0 4px; font-size: 14px; color: var(--forest); }
-    .detail-block p { margin: 0; color: var(--muted); font-size: 13px; }
-    .detail-block ul { margin: 0; padding-left: 20px; color: var(--muted); font-size: 13px; }
-    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 9px 12px; color: #fff; background: var(--forest); border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 850; }
-    .btn.secondary { color: var(--forest); background: #edf2ef; border: 1px solid #cfd9d3; }
-
-    .photo-note { padding: 12px; background: var(--amber-soft); border: 1px solid #ead395; border-radius: var(--radius); color: #61470c; font-size: 13px; }
-    .footer { margin: 28px -12px 0; padding: 20px 14px calc(16px + var(--safe-bottom)); color: #c8d6d2; background: #102d2c; font-size: 11px; text-align: center; }
-    .footer a { color: #d9efe9; }
-
-    @media (min-width: 720px) {
-      .header-main, .nav-tabs { padding-left: 20px; padding-right: 20px; }
-      main { padding-left: 20px; padding-right: 20px; }
-      .footer { margin-left: -20px; margin-right: -20px; }
-      .theme-grid { grid-template-columns: repeat(4, 1fr); }
-      .day-grid { grid-template-columns: repeat(2, 1fr); }
-      .place-grid { grid-template-columns: repeat(2, 1fr); }
-      .place-card.feature { grid-column: span 2; display: grid; grid-template-columns: 1.05fr .95fr; }
-      .place-card.feature .photo { aspect-ratio: auto; min-height: 100%; }
-      .source-grid { grid-template-columns: repeat(3, 1fr); }
-    }
+    :root { --ink:#152322; --muted:#5d6967; --paper:#f5f5f0; --surface:#fff; --line:#d9dfda; --forest:#173c3b; --green:#237a63; --sea:#167d9a; --sun:#e1a622; --coral:#d95d45; --blue-soft:#e6f2f5; --green-soft:#e7f2ed; --amber-soft:#fff3d3; --coral-soft:#fbe9e4; --shadow:0 5px 18px rgba(20,41,38,.08); --radius:12px; --safe-bottom:max(18px,env(safe-area-inset-bottom)); }
+    *{box-sizing:border-box} html{scroll-behavior:smooth;scroll-padding-top:126px} body{margin:0;color:var(--ink);background:var(--paper);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.62} a,button{-webkit-tap-highlight-color:transparent}.shell{width:min(100%,980px);margin:0 auto}.app-header{position:sticky;top:0;z-index:30;color:#fff;background:var(--forest);border-bottom:1px solid rgba(255,255,255,.14)}.header-main{padding:12px 14px 8px}.brand h1{margin:0;font-size:19px;line-height:1.25}.brand p{margin:2px 0 0;font-size:12px;color:rgba(255,255,255,.78)}.version-info{display:inline-flex;margin-top:4px;padding:2px 7px;color:#d7f3ec;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:999px;font-size:11px;font-weight:800}.nav-tabs{display:flex;gap:6px;overflow-x:auto;padding:0 14px 10px;scrollbar-width:none}.nav-tabs::-webkit-scrollbar{display:none}.nav-tab{flex:0 0 auto;min-width:72px;padding:7px 10px;border:1px solid rgba(255,255,255,.2);border-radius:7px;color:rgba(255,255,255,.8);background:transparent;font-size:12px;font-weight:780;text-align:center;text-decoration:none}.nav-tab.active{color:var(--forest);background:#fff;border-color:#fff}
+    .hero{position:relative;min-height:315px;overflow:hidden;background:#244b4a}.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,28,28,.28),rgba(10,28,28,.82))}.hero-content{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;min-height:315px;padding:36px 16px 24px;color:#fff}.eyebrow{margin:0 0 6px;font-size:12px;font-weight:850;color:#d7f3ec;letter-spacing:.08em}.hero h2{max-width:720px;margin:0;font-size:clamp(30px,7vw,50px);line-height:1.1}.hero p{max-width:760px;margin:10px 0 0;color:rgba(255,255,255,.88);font-size:15px} main{padding:0 12px calc(76px + var(--safe-bottom))}.section{padding:27px 0 4px}.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}.section-head h2{margin:0;font-size:22px}.section-head p{margin:2px 0 0;color:var(--muted);font-size:13px}.section-label{flex:0 0 auto;color:var(--green);font-size:12px;font-weight:850}
+    .intro-card{margin-top:-20px;position:relative;z-index:2;padding:15px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.intro-card h2{margin:0 0 6px;font-size:20px}.intro-card p{margin:0;color:var(--muted);font-size:14px}.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.chip{padding:5px 8px;background:var(--green-soft);color:#234640;border-radius:999px;font-size:12px;font-weight:850}
+    .overview-grid,.theme-grid,.flight-grid,.day-grid,.place-grid{display:grid;gap:11px}.card,.theme-card,.flight-card,.day-card,.place-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.card,.theme-card,.flight-card{padding:14px}.card h3,.theme-card h3,.flight-card h3{margin:0 0 6px;font-size:16px}.card p,.theme-card p,.flight-card p{margin:0;color:var(--muted);font-size:13px}.big-number{display:grid;place-items:center;width:42px;height:42px;margin-bottom:9px;border-radius:10px;background:var(--green-soft);color:var(--forest);font-size:18px;font-weight:900}.route-line{display:grid;gap:8px}.route-step{display:grid;grid-template-columns:64px 1fr;gap:10px;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fbfcfb}.route-date{font-size:12px;font-weight:900;color:var(--green)}.route-title{font-weight:900}.route-note{margin-top:2px;color:var(--muted);font-size:12px}.flight-time{display:flex;align-items:center;gap:10px;margin-top:8px}.flight-badge{padding:6px 9px;border-radius:9px;background:var(--forest);color:#fff;font-size:12px;font-weight:900}.flight-arrow{font-weight:900;color:var(--green)}
+    .shikoku-map{display:grid;gap:9px}.pref-card{display:grid;grid-template-columns:48px 1fr;gap:11px;align-items:center;padding:12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.pref-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--blue-soft);font-size:24px}.pref-card h3{margin:0;font-size:16px}.pref-card p{margin:2px 0 0;color:var(--muted);font-size:13px}
+    .visual{min-height:178px;position:relative;overflow:hidden;border-radius:12px;background:#e7f2ed}.visual::before{content:"";position:absolute;inset:0;opacity:.95}.visual.naruto::before{background:radial-gradient(circle at 75% 20%,#fff 0 5%,transparent 6%),linear-gradient(135deg,#acd7e7,#167d9a 54%,#173c3b)}.visual.naoshima::before{background:radial-gradient(circle at 18% 62%,#e93d3d 0 10%,transparent 11%),radial-gradient(circle at 70% 35%,#f6d15f 0 12%,transparent 13%),linear-gradient(135deg,#dfeff0,#7bb4c6 50%,#e7d9a2)}.visual.temple::before{background:linear-gradient(135deg,#fff2c7,#e1a622 50%,#7b4b26)}.visual.castle::before{background:linear-gradient(135deg,#dbe7ee,#6f9ab8 48%,#233a4a)}.visual.onsen::before{background:radial-gradient(circle at 25% 25%,rgba(255,255,255,.8) 0 10%,transparent 11%),linear-gradient(135deg,#f7e1d8,#d95d45 52%,#6d3e35)}.visual.city::before{background:linear-gradient(135deg,#e8edf0,#73899b 48%,#31495a)}.scene-label{position:absolute;left:14px;bottom:14px;padding:7px 10px;border-radius:999px;color:#fff;background:rgba(12,36,35,.78);font-weight:900;font-size:13px}.scene-icon{position:absolute;right:16px;top:14px;font-size:44px;filter:drop-shadow(0 3px 9px rgba(0,0,0,.25))}.mini-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:9px}.mini{min-height:58px;padding:8px;border-radius:9px;background:#edf2ef;color:#38504c;font-size:12px;font-weight:850;display:flex;align-items:end}.mini:nth-child(2){background:var(--blue-soft);color:#185b70}.mini:nth-child(3){background:var(--amber-soft);color:#795610}
+    .day-card{display:grid;grid-template-columns:112px 1fr;min-height:154px}.day-thumb{display:flex;align-items:center;justify-content:center;font-size:38px;color:#fff}.day-thumb.sea{background:linear-gradient(135deg,#91c7dd,#167d9a)}.day-thumb.art{background:linear-gradient(135deg,#e9d778,#d95d45)}.day-thumb.culture{background:linear-gradient(135deg,#d7b16a,#6f4d2a)}.day-thumb.dogo{background:linear-gradient(135deg,#ecb19d,#b24b3b)}.day-thumb.flight{background:linear-gradient(135deg,#cbd9e0,#47606f)}.day-content{padding:12px}.day-kicker{color:var(--green);font-size:12px;font-weight:850}.day-content h3{margin:2px 0 5px;font-size:17px}.day-content p{margin:0;color:var(--muted);font-size:13px}.tag-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.tag{padding:3px 7px;color:#38504c;background:#edf1ef;border-radius:999px;font-size:11px;font-weight:800}.tag.warn{color:#8b3d2b;background:var(--coral-soft)}.tag.sea{color:#185b70;background:var(--blue-soft)}.tag.art{color:#5a4574;background:#eee8f6}
+    .place-card{padding:12px}.place-card h3{margin:12px 0 5px;font-size:19px}.one-liner{margin:0;color:var(--muted);font-size:14px}.place-detail{margin-top:12px;border:1px solid var(--line);border-radius:10px;background:#fbfcfb}.place-detail summary{padding:11px 12px;cursor:pointer;font-weight:850;color:var(--forest)}.detail-block{display:grid;gap:12px;padding:0 12px 13px}.detail-block h4{margin:0 0 4px;font-size:14px;color:var(--forest)}.detail-block p{margin:0;color:var(--muted);font-size:13px}.detail-block ul{margin:0;padding-left:20px;color:var(--muted);font-size:13px}.note{padding:12px;background:var(--amber-soft);border:1px solid #ead395;border-radius:var(--radius);color:#61470c;font-size:13px}.footer{margin:28px -12px 0;padding:20px 14px calc(16px + var(--safe-bottom));color:#c8d6d2;background:#102d2c;font-size:11px;text-align:center}.footer p{margin:4px 0}
+    @media (min-width:720px){.header-main,.nav-tabs{padding-left:20px;padding-right:20px}main{padding-left:20px;padding-right:20px}.footer{margin-left:-20px;margin-right:-20px}.overview-grid,.flight-grid{grid-template-columns:repeat(3,1fr)}.theme-grid{grid-template-columns:repeat(4,1fr)}.shikoku-map{grid-template-columns:repeat(2,1fr)}.day-grid{grid-template-columns:repeat(2,1fr)}.place-grid{grid-template-columns:repeat(2,1fr)}.place-card.feature{grid-column:span 2;display:grid;grid-template-columns:1.05fr .95fr;gap:14px}.place-card.feature h3{margin-top:0}.place-card.feature .visual{min-height:100%}}
   </style>
 </head>
 <body>
-  <header class="app-header">
-    <div class="shell">
-      <div class="header-main">
-        <div class="brand">
-          <h1>2026 四國自駕行</h1>
-          <p>7/18–7/23｜高松・鳴門・直島・松山</p>
-          <p class="version-info">家人介紹版 v1｜2026-06-23 20:58</p>
-        </div>
-      </div>
-      <nav class="nav-tabs" aria-label="家人介紹導覽">
-        <a class="nav-tab active" href="#overview">總覽</a>
-        <a class="nav-tab" href="#days">每日亮點</a>
-        <a class="nav-tab" href="#places">景點故事</a>
-        <a class="nav-tab" href="#sources">來源</a>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero" aria-labelledby="hero-title">
-    <img src="./assets/naruto-strait.jpg" alt="從渦之道眺望鳴門海峽與大鳴門橋" />
-    <div class="hero-content shell">
-      <p class="eyebrow">FAMILY GUIDE · SHIKOKU ROAD TRIP</p>
-      <h2 id="hero-title">給家人看的四國旅行介紹</h2>
-      <p>這一頁不是現場開車導航，而是用照片、每日亮點與景點故事，讓同行家人出發前先知道這趟旅程會去哪些地方、每個地方有什麼特色。</p>
-    </div>
-  </section>
-
+  <header class="app-header"><div class="shell"><div class="header-main"><div class="brand"><h1>2026 四國自駕行</h1><p>給家人看的行程介紹｜7/18–7/23</p><p class="version-info">家人介紹版 v2｜2026-06-23 21:20</p></div></div><nav class="nav-tabs" aria-label="家人介紹導覽"><a class="nav-tab active" href="#overview">總覽</a><a class="nav-tab" href="#flight">航班</a><a class="nav-tab" href="#shikoku">四國</a><a class="nav-tab" href="#days">每日</a><a class="nav-tab" href="#places">景點</a></nav></div></header>
+  <section class="hero" aria-labelledby="hero-title"><img src="./assets/naruto-strait.jpg" alt="從渦之道眺望鳴門海峽與大鳴門橋"><div class="hero-content shell"><p class="eyebrow">FAMILY GUIDE · SHIKOKU ROAD TRIP</p><h2 id="hero-title">瀨戶內海、藝術島、古城與道後溫泉的六天自駕旅行</h2><p>這一頁給家人出發前先了解旅程。現場導航、停車、船班與駕駛提醒仍由駕駛／導遊版首頁負責。</p></div></section>
   <main class="shell" id="overview">
-    <section class="intro-card" aria-label="頁面說明">
-      <h2>這趟旅行看什麼？</h2>
-      <p>從高松出發，串聯鳴門海峽、直島藝術島、香川寺社與城郭、松山城、道後溫泉。節奏上會以自駕移動、預約時段、夏季體力與天氣為主。</p>
-    </section>
-
-    <section class="section" aria-labelledby="theme-title">
-      <div class="section-head">
-        <div><h2 id="theme-title">四個主題快速理解</h2><p>先知道每天在玩什麼，不用看完整導航細節</p></div>
-        <span class="section-label">OVERVIEW</span>
-      </div>
-      <div class="theme-grid">
-        <article class="theme-card"><h3>🌊 海峽自然</h3><p>鳴門海峽以潮汐與強流形成漩渦，渦之道可從橋下步道俯看海面。</p></article>
-        <article class="theme-card"><h3>🎨 瀨戶內藝術</h3><p>直島把現代藝術、建築與島嶼風景結合，是本次最需要預約與掌握船班的一天。</p></article>
-        <article class="theme-card"><h3>⛩️ 寺社與城郭</h3><p>善通寺、金刀比羅宮、丸龜城串成香川文化線，節奏取決於體力與天氣。</p></article>
-        <article class="theme-card"><h3>♨️ 溫泉街散步</h3><p>松山城與道後溫泉是旅程後半段重點，晚間適合步行、泡湯與買伴手禮。</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="days" aria-labelledby="days-title">
-      <div class="section-head">
-        <div><h2 id="days-title">每日亮點</h2><p>每一天先抓一個主題，行程就比較容易理解</p></div>
-        <span class="section-label">DAYS</span>
-      </div>
-      <div class="day-grid">
-        <article class="day-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Naruto_Strait_from_Uzunomichi_Promenade.jpg" alt="鳴門海峽"><div class="day-content"><div class="day-kicker">D2｜7/19</div><h3>鳴門海峽觀潮日</h3><p>依潮見表調整出發時間；重點是渦之道、展望台與海峽景觀。</p><div class="tag-row"><span class="tag sea">依潮汐</span><span class="tag warn">強風補水</span></div></div></article>
-        <article class="day-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Naoshima_Yellow_Pumpkin.jpg" alt="直島藝術作品"><div class="day-content"><div class="day-kicker">D3｜7/20</div><h3>直島藝術日</h3><p>車留高松港，船班與美術館預約是核心；島上以巴士、步行或租借腳踏車移動。</p><div class="tag-row"><span class="tag art">藝術島</span><span class="tag warn">需預約</span></div></div></article>
-        <article class="day-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kotohira-gu%20Shrine.jpg" alt="金刀比羅宮"><div class="day-content"><div class="day-kicker">D4｜7/21</div><h3>香川文化線</h3><p>善通寺、金刀比羅宮、丸龜城依體力取捨；夏天不要硬塞滿。</p><div class="tag-row"><span class="tag">寺社</span><span class="tag warn">階梯多</span></div></div></article>
-        <article class="day-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dogo_Onsen_Honkan.jpg" alt="道後溫泉本館"><div class="day-content"><div class="day-kicker">D5｜7/22</div><h3>松山城與道後溫泉</h3><p>上午登城，午後逛大街道與銀天街，傍晚回道後泡湯散步。</p><div class="tag-row"><span class="tag">城郭</span><span class="tag sea">溫泉街</span></div></div></article>
-      </div>
-    </section>
-
-    <section class="section" id="places" aria-labelledby="places-title">
-      <div class="section-head">
-        <div><h2 id="places-title">景點故事卡</h2><p>點「展開介紹」可以看背景、現場看點與簡單提醒</p></div>
-        <span class="section-label">PLACES</span>
-      </div>
-      <div class="place-grid">
-        <article class="place-card feature">
-          <div class="photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Naruto_Strait_from_Uzunomichi_Promenade.jpg" alt="大鳴門橋與鳴門海峽"><div class="place-badge"><span>D2</span><span>自然景觀</span><span>依潮汐</span></div></div>
-          <div class="place-body"><h3>大鳴門橋遊步道・渦之道</h3><p class="one-liner">從大鳴門橋下方步道俯看鳴門海峽，最重要的是抓對觀潮時間。</p><details class="place-detail" open><summary>展開介紹</summary><div class="detail-block"><div><h4>背景故事</h4><p>渦之道利用大鳴門橋橋桁空間，設置海上步道與玻璃觀景窗。漩渦不是每個時間都看得到，要依潮見表安排。</p></div><div><h4>到現場看什麼</h4><ul><li>海面上方約 45m 的橋下步道視角</li><li>展望室玻璃地板與潮流方向</li><li>鳴門山展望台補一張大橋全景</li></ul></div><div><h4>實用提醒</h4><p>先看官方潮見表；強風、日曬與水分補給要注意。</p></div></div></details><div class="actions"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=%E5%A4%A7%E9%B3%B4%E9%96%80%E6%A9%8B%E9%81%8A%E6%AD%A9%E9%81%93%20%E6%B8%A6%E3%81%AE%E9%81%93&travelmode=driving">Google Maps</a><a class="btn secondary" target="_blank" rel="noopener" href="https://www.uzunomichi.jp/">官方網站</a></div></div>
-        </article>
-
-        <article class="place-card">
-          <div class="photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Naoshima_Yellow_Pumpkin.jpg" alt="直島南瓜作品"><div class="place-badge"><span>D3</span><span>藝術島</span></div></div>
-          <div class="place-body"><h3>直島</h3><p class="one-liner">瀨戶內海上的藝術島，把美術館、戶外作品與島嶼生活放在同一天體驗。</p><details class="place-detail"><summary>展開介紹</summary><div class="detail-block"><div><h4>背景故事</h4><p>直島是 Benesse Art Site Naoshima 的核心島嶼之一，現代藝術與建築作品讓島成為瀨戶內代表性藝術旅遊地。</p></div><div><h4>到現場看什麼</h4><ul><li>宮浦港附近的公共藝術</li><li>地中美術館與 Benesse House Museum</li><li>海邊戶外作品與港口散步</li></ul></div><div><h4>實用提醒</h4><p>海之日假期人潮多，船班、預約與末班船要先確認。</p></div></div></details><div class="actions"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=%E7%9B%B4%E5%B3%B6%20%E5%AE%AE%E6%B5%A6%E6%B8%AF&travelmode=driving">Google Maps</a><a class="btn secondary" target="_blank" rel="noopener" href="https://benesse-artsite.jp/en/">藝術網站</a></div></div>
-        </article>
-
-        <article class="place-card">
-          <div class="photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Chichu_Art_Museum.jpg" alt="地中美術館"><div class="place-badge"><span>D3</span><span>預約制</span></div></div>
-          <div class="place-body"><h3>地中美術館</h3><p class="one-liner">一座幾乎藏在地下的美術館，重點不是展品數量，而是光線、空間與作品的整體體驗。</p><details class="place-detail"><summary>展開介紹</summary><div class="detail-block"><div><h4>背景故事</h4><p>地中美術館於 2004 年建成，由安藤忠雄設計；為了不破壞瀨戶內海景觀，多數建築位於地下，館內常設 Monet、James Turrell、Walter De Maria 作品。</p></div><div><h4>到現場看什麼</h4><ul><li>自然光如何改變作品與空間氛圍</li><li>Monet 睡蓮系列展間</li><li>戶外庭園與咖啡空間</li></ul></div><div><h4>實用提醒</h4><p>需事先購買指定日期與時段票；若線上售完，當日可能沒有現場票。</p></div></div></details><div class="actions"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=%E5%9C%B0%E4%B8%AD%E7%BE%8E%E8%A1%93%E9%A4%A8%20%E7%9B%B4%E5%B3%B6&travelmode=driving">Google Maps</a><a class="btn secondary" target="_blank" rel="noopener" href="https://benesse-artsite.jp/en/art/chichu.html">官方資訊</a></div></div>
-        </article>
-
-        <article class="place-card">
-          <div class="photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Zentsuji_Temple_Kagawa_Japan.jpg" alt="善通寺"><div class="place-badge"><span>D4</span><span>四國遍路</span></div></div>
-          <div class="place-body"><h3>總本山善通寺</h3><p class="one-liner">弘法大師空海誕生地，適合作為香川文化線的第一站。</p><details class="place-detail"><summary>展開介紹</summary><div class="detail-block"><div><h4>背景故事</h4><p>善通寺是四國靈場第 75 番札所，也是弘法大師空海的誕生所。</p></div><div><h4>到現場看什麼</h4><ul><li>境內五重塔與金堂</li><li>四國遍路文化</li><li>寶物館或御影堂周邊</li></ul></div><div><h4>實用提醒</h4><p>建議停留 45–60 分鐘，不要壓縮金刀比羅宮的體力與時間。</p></div></div></details><div class="actions"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=%E7%B7%8F%E6%9C%AC%E5%B1%B1%E5%96%84%E9%80%9A%E5%AF%BA&travelmode=driving">Google Maps</a><a class="btn secondary" target="_blank" rel="noopener" href="https://zentsuji.com/">官方網站</a></div></div>
-        </article>
-
-        <article class="place-card">
-          <div class="photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kotohira-gu%20Shrine.jpg" alt="金刀比羅宮"><div class="place-badge"><span>D4</span><span>785 階</span></div></div>
-          <div class="place-body"><h3>琴平・金刀比羅宮</h3><p class="one-liner">以階梯參拜聞名，夏季重點不是爬多快，而是分段休息與補水。</p><details class="place-detail"><summary>展開介紹</summary><div class="detail-block"><div><h4>背景故事</h4><p>金刀比羅宮供奉海上守護等神祇，江戶時代就是許多人嚮往的參拜目的地。</p></div><div><h4>到現場看什麼</h4><ul><li>表參道商店街</li><li>往本宮的 785 階石階</li><li>沿途社殿與展望視野</li></ul></div><div><h4>實用提醒</h4><p>正午炎熱，建議帽子、毛巾、水；體力不足可只走到合適高度。</p></div></div></details><div class="actions"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=%E9%87%91%E5%88%80%E6%AF%94%E7%BE%85%E5%AE%AE&travelmode=driving">Google Maps</a><a class="btn secondary" target="_blank" rel="noopener" href="https://www.konpira.or.jp/">官方網站</a></div></div>
-        </article>
-
-        <article class="place-card">
-          <div class="photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Marugame_Castle.jpg" alt="丸龜城"><div class="place-badge"><span>D4</span><span>城郭</span></div></div>
-          <div class="place-body"><h3>丸龜城</h3><p class="one-liner">規模不大但石垣存在感很強，適合用 60–90 分鐘看天守與城景。</p><details class="place-detail"><summary>展開介紹</summary><div class="detail-block"><div><h4>背景故事</h4><p>丸龜城以高聳石垣與保存下來的天守聞名，是香川縣重要城郭景點。</p></div><div><h4>到現場看什麼</h4><ul><li>從山腳仰看石垣曲線</li><li>天守與城內展望</li><li>城下町與丸龜市區景觀</li></ul></div><div><h4>實用提醒</h4><p>若當天金刀比羅宮耗時較久，丸龜城可縮短停留或改為外觀拍照。</p></div></div></details><div class="actions"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=%E4%B8%B8%E4%BA%80%E5%9F%8E&travelmode=driving">Google Maps</a><a class="btn secondary" target="_blank" rel="noopener" href="https://www.marugame-castle.jp/">官方資訊</a></div></div>
-        </article>
-
-        <article class="place-card">
-          <div class="photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Matsuyama_Castle.jpg" alt="松山城"><div class="place-badge"><span>D5</span><span>現存天守</span></div></div>
-          <div class="place-body"><h3>松山城</h3><p class="one-liner">市中心山上的城郭景點，上午先去可避開暑熱，也能看松山市區展望。</p><details class="place-detail"><summary>展開介紹</summary><div class="detail-block"><div><h4>背景故事</h4><p>松山城位於城山上，是日本現存 12 天守之一，也是日本 100 名城之一。</p></div><div><h4>到現場看什麼</h4><ul><li>纜車或吊椅上山體驗</li><li>天守與本丸石垣</li><li>松山市區與瀨戶內海方向視野</li></ul></div><div><h4>實用提醒</h4><p>雨天時吊椅可能停駛；夏季建議上午先登城。</p></div></div></details><div class="actions"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=%E6%9D%BE%E5%B1%B1%E5%9F%8E%E3%83%AD%E3%83%BC%E3%83%97%E3%82%A6%E3%82%A7%E3%82%A4%E3%81%AE%E3%82%8A%E3%81%B0%E6%9D%B1%E9%9B%B2%E5%8F%A3&travelmode=driving">Google Maps</a><a class="btn secondary" target="_blank" rel="noopener" href="https://www.matsuyamajo.jp/">官方網站</a></div></div>
-        </article>
-
-        <article class="place-card">
-          <div class="photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dogo_Onsen_Honkan.jpg" alt="道後溫泉本館"><div class="place-badge"><span>D5</span><span>溫泉街</span></div></div>
-          <div class="place-body"><h3>道後溫泉本館・道後商店街</h3><p class="one-liner">旅行後半段的放鬆重點，適合泡湯、晚餐、伴手禮與夜間散步。</p><details class="place-detail"><summary>展開介紹</summary><div class="detail-block"><div><h4>背景故事</h4><p>道後溫泉本館是道後溫泉象徵，官方介紹其約 3000 年歷史，且為首座被指定為國家重要文化財的公共浴場。</p></div><div><h4>到現場看什麼</h4><ul><li>本館木造外觀與夜間燈光</li><li>道後商店街與伴手禮</li><li>泡湯前後的溫泉街散步</li></ul></div><div><h4>實用提醒</h4><p>可先看官方等待時間；人多時可能發整理券。</p></div></div></details><div class="actions"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89%E6%9C%AC%E9%A4%A8&travelmode=driving">Google Maps</a><a class="btn secondary" target="_blank" rel="noopener" href="https://dogo.jp/en/">官方網站</a></div></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="sources" aria-labelledby="sources-title">
-      <div class="section-head"><div><h2 id="sources-title">資料與照片來源</h2><p>景點說明以官方資訊為主，照片先使用 Wikimedia Commons 連結</p></div><span class="section-label">SOURCE</span></div>
-      <div class="source-grid">
-        <article class="source-card"><h3>官方資料優先</h3><p>營業時間、票券、預約、潮見表與等待時間都以官方網站為準。</p></article>
-        <article class="source-card"><h3>照片之後可再強化</h3><p>目前使用 Wikimedia Commons 的公開圖片連結。之後若要更穩定，可下載授權圖片放到 repo 的 <code>assets/places/</code>。</p></article>
-        <article class="source-card"><h3>給家人看的版本</h3><p>這頁不放訂房姓名、護照、房號、租車合約或私人電話，只保留旅遊介紹資訊。</p></article>
-      </div>
-      <div class="photo-note">提醒：景點開放時間、票券與預約規則可能異動；實際出發前仍以官方網站與現場公告為準。</div>
-    </section>
-
-    <footer class="footer">
-      <p>2026 四國自駕行｜家人介紹版 v1｜2026-06-23 20:58</p>
-      <p>本頁提供行前了解景點使用；現場導航仍以駕駛／導遊版首頁為主。</p>
-    </footer>
+    <section class="intro-card"><h2>整趟旅程一句話</h2><p>我們從桃園飛到高松，先住高松三晚，走鳴門海峽與直島藝術島；接著一路往西，經過善通寺、金刀比羅宮、丸龜城到松山，最後住在道後溫泉兩晚，再開回高松機場返台。</p><div class="chips"><span class="chip">6 天 5 夜</span><span class="chip">自駕移動</span><span class="chip">高松 3 晚</span><span class="chip">道後 2 晚</span><span class="chip">自然＋藝術＋溫泉</span></div></section>
+    <section class="section"><div class="section-head"><div><h2>旅程總覽</h2><p>先看大方向，不用理解每個導航細節</p></div><span class="section-label">ROUTE</span></div><div class="overview-grid"><article class="card"><div class="big-number">1</div><h3>前半段：高松為基地</h3><p>抵達後先住高松，適應右駕與日本道路，再安排鳴門海峽、直島與高松周邊。</p></article><article class="card"><div class="big-number">2</div><h3>中段：香川文化線</h3><p>退房後一路拜訪善通寺、金刀比羅宮與丸龜城，依體力取捨，傍晚抵達道後。</p></article><article class="card"><div class="big-number">3</div><h3>後半段：松山與溫泉</h3><p>松山城、大街道、銀天街與道後溫泉街，是比較放鬆的城市與溫泉行程。</p></article></div></section>
+    <section class="section" id="flight"><div class="section-head"><div><h2>航班與住宿</h2><p>家人最需要先知道的出發、回程與住宿安排</p></div><span class="section-label">BASIC</span></div><div class="flight-grid"><article class="flight-card"><h3>去程航班</h3><p>CI0178｜桃園 → 高松</p><div class="flight-time"><span class="flight-badge">7/18</span><span>14:30</span><span class="flight-arrow">→</span><span>18:05</span></div></article><article class="flight-card"><h3>回程航班</h3><p>CI0179｜高松 → 桃園</p><div class="flight-time"><span class="flight-badge">7/23</span><span>19:05</span><span class="flight-arrow">→</span><span>20:55</span></div></article><article class="flight-card"><h3>住宿安排</h3><p>7/18–7/21：Hotel Route Inn Takamatsu Yashima<br>7/21–7/23：Kowakuen Haruka，道後</p></article></div></section>
+    <section class="section" id="shikoku"><div class="section-head"><div><h2>日本四國簡介</h2><p>這趟主要走四國北側與瀨戶內海沿線</p></div><span class="section-label">SHIKOKU</span></div><div class="theme-grid"><article class="theme-card"><h3>四國是哪裡？</h3><p>四國是日本四大本島之一，由德島、香川、愛媛、高知四縣組成。</p></article><article class="theme-card"><h3>瀨戶內海風景</h3><p>本次路線多在北側移動，會看到海峽、港口、島嶼與溫和的瀨戶內海景。</p></article><article class="theme-card"><h3>四國遍路文化</h3><p>四國以 88 所靈場巡禮聞名，善通寺與金刀比羅宮都帶有濃厚信仰與參拜文化。</p></article><article class="theme-card"><h3>自駕的好處</h3><p>景點分散，開車能把自然、藝術島、寺社城郭、溫泉街與購物點串在一起。</p></article></div><div class="shikoku-map" style="margin-top:11px"><article class="pref-card"><div class="pref-icon">🌊</div><div><h3>德島｜鳴門</h3><p>這次到鳴門海峽看潮流、漩渦與大鳴門橋。</p></div></article><article class="pref-card"><div class="pref-icon">🎨</div><div><h3>香川｜高松・直島・琴平</h3><p>高松住宿為基地，串聯直島藝術與香川寺社城郭。</p></div></article><article class="pref-card"><div class="pref-icon">♨️</div><div><h3>愛媛｜松山・道後</h3><p>後半段住道後，安排松山城、商店街與溫泉。</p></div></article><article class="pref-card"><div class="pref-icon">⛰️</div><div><h3>高知｜這次未深入</h3><p>高知位於四國南側，這次路線時間有限，先保留給下次。</p></div></article></div></section>
+    <section class="section" id="days"><div class="section-head"><div><h2>每日亮點</h2><p>每天抓一個主題，就知道當天在玩什麼</p></div><span class="section-label">DAYS</span></div><div class="day-grid"><article class="day-card"><div class="day-thumb flight">✈️</div><div class="day-content"><div class="day-kicker">D1｜7/18</div><h3>抵達高松・取車</h3><p>晚間抵達、租車、入住高松。這天不排長途，重點是休息與熟悉車況。</p><div class="tag-row"><span class="tag">抵達日</span><span class="tag warn">右駕適應</span></div></div></article><article class="day-card"><div class="day-thumb sea">🌊</div><div class="day-content"><div class="day-kicker">D2｜7/19</div><h3>鳴門海峽觀潮日</h3><p>以潮汐時間為核心，看渦之道、鳴門山展望台與大鳴門橋景觀。</p><div class="tag-row"><span class="tag sea">海峽</span><span class="tag warn">依潮汐</span></div></div></article><article class="day-card"><div class="day-thumb art">🎨</div><div class="day-content"><div class="day-kicker">D3｜7/20</div><h3>直島藝術日</h3><p>車停高松港，搭船到直島；美術館預約與船班是當天核心。</p><div class="tag-row"><span class="tag art">藝術島</span><span class="tag warn">船班預約</span></div></div></article><article class="day-card"><div class="day-thumb culture">⛩️</div><div class="day-content"><div class="day-kicker">D4｜7/21</div><h3>香川文化線到道後</h3><p>善通寺、金刀比羅宮、丸龜城一路往西，傍晚入住道後溫泉。</p><div class="tag-row"><span class="tag">寺社城郭</span><span class="tag warn">移動較長</span></div></div></article><article class="day-card"><div class="day-thumb dogo">♨️</div><div class="day-content"><div class="day-kicker">D5｜7/22</div><h3>松山城・大街道・道後</h3><p>上午看松山城，午後逛市區，傍晚回道後泡湯散步。</p><div class="tag-row"><span class="tag">城市散步</span><span class="tag sea">溫泉</span></div></div></article><article class="day-card"><div class="day-thumb flight">🛫</div><div class="day-content"><div class="day-kicker">D6｜7/23</div><h3>退房・還車・返台</h3><p>從松山回高松機場，保留高速移動、加油還車與機場報到時間。</p><div class="tag-row"><span class="tag">回程日</span><span class="tag warn">還車加油</span></div></div></article></div></section>
+    <section class="section" id="places"><div class="section-head"><div><h2>景點介紹</h2><p>改成圖像＋故事，移除操作按鈕，給家人閱讀比較單純</p></div><span class="section-label">PLACES</span></div><div class="place-grid">
+      <article class="place-card feature"><div><div class="visual naruto"><div class="scene-icon">🌊</div><div class="scene-label">鳴門海峽・渦之道</div></div><div class="mini-strip"><div class="mini">大鳴門橋</div><div class="mini">玻璃地板</div><div class="mini">潮流漩渦</div></div></div><div><h3>大鳴門橋遊步道・渦之道</h3><p class="one-liner">橋下海上步道，可以從高處看鳴門海峽的潮流與漩渦。</p><details class="place-detail" open><summary>展開介紹</summary><div class="detail-block"><div><h4>背景</h4><p>鳴門海峽連接瀨戶內海與太平洋側水域，因潮位差與強流形成知名漩渦。這個景點最特別的是站在大鳴門橋下方看海流。</p></div><div><h4>現場看點</h4><ul><li>橋下步道與海面距離感</li><li>玻璃地板往下看潮流</li><li>展望台看大橋與海峽全景</li></ul></div><div><h4>提醒</h4><p>能不能看到明顯漩渦跟潮汐時間有關，夏天要注意強風、日曬與補水。</p></div></div></details></div></article>
+      <article class="place-card"><div class="visual naoshima"><div class="scene-icon">🎨</div><div class="scene-label">直島・藝術島</div></div><div class="mini-strip"><div class="mini">宮浦港</div><div class="mini">戶外藝術</div><div class="mini">海邊散步</div></div><h3>直島</h3><p class="one-liner">瀨戶內海上的藝術島，把美術館、建築、海景與島上生活放在一起。</p><details class="place-detail"><summary>展開介紹</summary><div class="detail-block"><div><h4>背景</h4><p>直島因 Benesse Art Site Naoshima 發展出獨特的藝術島形象，是瀨戶內海代表性旅遊點。</p></div><div><h4>現場看點</h4><ul><li>港口公共藝術</li><li>島上美術館與戶外作品</li><li>搭船往返高松港的海上風景</li></ul></div></div></details></article>
+      <article class="place-card"><div class="visual naoshima"><div class="scene-icon">🏛️</div><div class="scene-label">地中美術館</div></div><div class="mini-strip"><div class="mini">安藤建築</div><div class="mini">自然光</div><div class="mini">莫內睡蓮</div></div><h3>地中美術館</h3><p class="one-liner">幾乎藏在地下的美術館，重點是光線、空間與作品的整體體驗。</p><details class="place-detail"><summary>展開介紹</summary><div class="detail-block"><div><h4>背景</h4><p>地中美術館於 2004 年建成，由安藤忠雄設計，多數建築位於地下，以避免破壞瀨戶內海景觀，館內常設 Monet、James Turrell、Walter De Maria 的作品。</p></div><div><h4>現場看點</h4><ul><li>自然光改變展間氛圍</li><li>混凝土建築與庭園</li><li>預約制帶來比較安靜的參觀節奏</li></ul></div></div></details></article>
+      <article class="place-card"><div class="visual temple"><div class="scene-icon">⛩️</div><div class="scene-label">總本山善通寺</div></div><div class="mini-strip"><div class="mini">五重塔</div><div class="mini">空海誕生地</div><div class="mini">遍路文化</div></div><h3>總本山善通寺</h3><p class="one-liner">弘法大師空海誕生地，也是四國遍路第 75 番札所。</p><details class="place-detail"><summary>展開介紹</summary><div class="detail-block"><div><h4>背景</h4><p>善通寺是香川重要寺院，與空海及四國遍路文化關係深，適合作為了解四國信仰文化的停靠點。</p></div><div><h4>現場看點</h4><ul><li>五重塔與寺院建築</li><li>遍路參拜氣氛</li><li>短時間文化停靠</li></ul></div></div></details></article>
+      <article class="place-card"><div class="visual temple"><div class="scene-icon">🪜</div><div class="scene-label">金刀比羅宮</div></div><div class="mini-strip"><div class="mini">表參道</div><div class="mini">785 階</div><div class="mini">本宮展望</div></div><h3>琴平・金刀比羅宮</h3><p class="one-liner">以階梯參拜聞名，到本宮要爬 785 階，夏天以體力為優先。</p><details class="place-detail"><summary>展開介紹</summary><div class="detail-block"><div><h4>背景</h4><p>金刀比羅宮又稱 Kompira-san，和海上守護等信仰相關。江戶時代就是許多人嚮往的參拜地。</p></div><div><h4>現場看點</h4><ul><li>表參道商店街</li><li>石階參拜體驗</li><li>本宮附近視野</li></ul></div><div><h4>提醒</h4><p>階梯多，夏天不一定要硬爬到最上面；分段休息、補水比較重要。</p></div></div></details></article>
+      <article class="place-card"><div class="visual castle"><div class="scene-icon">🏯</div><div class="scene-label">丸龜城</div></div><div class="mini-strip"><div class="mini">石垣</div><div class="mini">天守</div><div class="mini">城下景觀</div></div><h3>丸龜城</h3><p class="one-liner">以高聳石垣與城郭景觀聞名，是香川文化線上的城郭停靠點。</p><details class="place-detail"><summary>展開介紹</summary><div class="detail-block"><div><h4>背景</h4><p>丸龜城規模不算大，但石垣存在感強，適合用較短時間感受日本城郭風景。</p></div><div><h4>現場看點</h4><ul><li>從山腳仰看石垣</li><li>天守與城內展望</li><li>時間不足時可外觀拍照</li></ul></div></div></details></article>
+      <article class="place-card"><div class="visual castle"><div class="scene-icon">🏯</div><div class="scene-label">松山城</div></div><div class="mini-strip"><div class="mini">纜車街</div><div class="mini">現存天守</div><div class="mini">市區展望</div></div><h3>松山城</h3><p class="one-liner">位在松山市中心山上，可搭纜車或吊椅上山，看城與市區展望。</p><details class="place-detail"><summary>展開介紹</summary><div class="detail-block"><div><h4>背景</h4><p>松山城是日本現存 12 天守之一，城山位置讓它同時具備歷史感與城市展望。</p></div><div><h4>現場看點</h4><ul><li>纜車或吊椅上山</li><li>天守與城郭石垣</li><li>松山市區與瀨戶內海方向景色</li></ul></div></div></details></article>
+      <article class="place-card"><div class="visual onsen"><div class="scene-icon">♨️</div><div class="scene-label">道後溫泉本館</div></div><div class="mini-strip"><div class="mini">本館外觀</div><div class="mini">溫泉街</div><div class="mini">夜間散步</div></div><h3>道後溫泉本館・商店街</h3><p class="one-liner">旅行後半段的放鬆重點，適合泡湯、晚餐、伴手禮與夜間散步。</p><details class="place-detail"><summary>展開介紹</summary><div class="detail-block"><div><h4>背景</h4><p>道後溫泉是日本知名古湯之一，本館木造外觀與溫泉街氣氛，是松山最有代表性的景點之一。</p></div><div><h4>現場看點</h4><ul><li>本館外觀與夜間燈光</li><li>道後商店街買伴手禮</li><li>泡湯後散步回飯店</li></ul></div></div></details></article>
+    </div><div class="note" style="margin-top:12px">這版已移除 Google Maps 與官方網站按鈕，改成純介紹頁。原本壞掉的遠端圖片也已改成不會出現問號的內建視覺圖卡；未來若要使用真實照片，建議把授權照片放進 repo 的 assets 資料夾。</div></section>
+    <footer class="footer"><p>2026 四國自駕行｜家人介紹版 v2｜2026-06-23 21:20</p><p>本頁提供行前了解景點使用；現場導航仍以駕駛／導遊版首頁為主。</p></footer>
   </main>
-  <script>
-    const tabs = [...document.querySelectorAll('.nav-tab')];
-    const sections = ['overview', 'days', 'places', 'sources'].map(id => document.getElementById(id)).filter(Boolean);
-    const observer = new IntersectionObserver(entries => {
-      const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (!visible) return;
-      tabs.forEach(tab => tab.classList.toggle('active', tab.getAttribute('href') === `#${visible.target.id}`));
-    }, { rootMargin: '-125px 0px -62% 0px', threshold: [0, .15, .5] });
-    sections.forEach(section => observer.observe(section));
-  </script>
+  <script>const tabs=[...document.querySelectorAll('.nav-tab')];const sections=['overview','flight','shikoku','days','places'].map(id=>document.getElementById(id)).filter(Boolean);const observer=new IntersectionObserver(entries=>{const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(!visible)return;tabs.forEach(tab=>tab.classList.toggle('active',tab.getAttribute('href')===`#${visible.target.id}`));},{rootMargin:'-125px 0px -62% 0px',threshold:[0,.15,.5]});sections.forEach(section=>observer.observe(section));</script>
 </body>
 </html>
