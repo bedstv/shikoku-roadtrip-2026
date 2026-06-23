@@ -1,7 +1,8 @@
-const CACHE = 'shikoku-roadtrip-2026-v5';
+const CACHE = 'shikoku-roadtrip-2026-v7';
 const ASSETS = [
   './',
   './index.html',
+  './guide.html',
   './data.js',
   './manifest.webmanifest',
   './assets/naruto-strait.jpg',
@@ -23,7 +24,7 @@ self.addEventListener('activate', event => {
 function shouldUseNetworkFirst(request) {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return false;
-  return url.pathname.endsWith('/') || url.pathname.endsWith('/index.html') || url.pathname.endsWith('/data.js') || url.pathname.endsWith('/sw.js');
+  return url.pathname.endsWith('/') || url.pathname.endsWith('/index.html') || url.pathname.endsWith('/guide.html') || url.pathname.endsWith('/data.js') || url.pathname.endsWith('/sw.js');
 }
 
 self.addEventListener('fetch', event => {
