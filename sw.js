@@ -1,4 +1,4 @@
-const CACHE = 'shikoku-roadtrip-2026-v9';
+const CACHE = 'shikoku-roadtrip-2026-v10';
 const ASSETS = [
   './',
   './index.html',
@@ -6,6 +6,14 @@ const ASSETS = [
   './data.js',
   './manifest.webmanifest',
   './assets/naruto-strait.jpg',
+  './assets/places/chichu-art-museum.jpg',
+  './assets/places/dogo-onsen-honkan.jpg',
+  './assets/places/kotohira-gu.jpg',
+  './assets/places/marugame-castle.jpg',
+  './assets/places/matsuyama-castle.jpg',
+  './assets/places/naoshima-torii.jpg',
+  './assets/places/naruto-strait-flow.jpg',
+  './assets/places/zentsuji.jpg',
   './assets/lucide.min.js'
 ];
 
