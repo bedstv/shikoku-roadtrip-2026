@@ -1,4 +1,4 @@
-const CACHE = 'shikoku-roadtrip-2026-v11';
+const CACHE = 'shikoku-roadtrip-2026-v12';
 const ASSETS = [
   './',
   './index.html',
@@ -33,7 +33,7 @@ self.addEventListener('activate', event => {
 function shouldUseNetworkFirst(request) {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return false;
-  return url.pathname.endsWith('/') || url.pathname.endsWith('/index.html') || url.pathname.endsWith('/guide.html') || url.pathname.endsWith('/data.js') || url.pathname.endsWith('/sw.js');
+  return url.pathname.endsWith('/') || url.pathname.endsWith('/index.html') || url.pathname.endsWith('/guide.html') || url.pathname.endsWith('/shopping.html') || url.pathname.endsWith('/data.js') || url.pathname.endsWith('/sw.js');
 }
 
 self.addEventListener('fetch', event => {
