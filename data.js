@@ -1,7 +1,7 @@
 window.TRIP_DATA = {
   "meta": {
     "title": "2026 四國自駕行",
-    "subtitle": "7/18–7/23｜高松・鳴門・直島・松山",
+    "subtitle": "7/18–7/23｜高松・鳴門・屋島・松山",
     "description": "2026 四國六天五夜自駕行程，提供每日行程、住宿、停車提醒與 Google Maps 即時導航。",
     "tripStart": "2026-07-18T00:00:00+09:00",
     "tripEnd": "2026-07-23T23:59:59+09:00",
@@ -13,8 +13,8 @@ window.TRIP_DATA = {
     "eyebrow": "6 DAYS · 5 NIGHTS · SELF DRIVE",
     "heroTitle": "瀨戶內海到道後溫泉的夏日公路旅行",
     "heroText": "以住宿與實際車程為核心，提供每日停靠順序、停車提醒及 Google Maps 一鍵自駕導航。",
-    "updatedAt": "2026-06-23 23:20",
-    "version": "吃買逛清單 v8",
+    "updatedAt": "2026-07-07 08:37",
+    "version": "高松屋島線 v9",
     "photoCreditText": "Soramimi / Wikimedia Commons，CC BY-SA 4.0",
     "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Naruto_Strait_from_Uzunomichi_Promenade.jpg",
     "disclaimer": "現場時間、船班、潮汐與交通狀況以官方資訊及 Google Maps 為準。"
@@ -67,14 +67,16 @@ window.TRIP_DATA = {
       "id": "day3",
       "tab": "7/20",
       "number": "D3",
-      "title": "7/20 一｜直島藝術日",
-      "subtitle": "屋島 → 高松港停車 → 直島 → 屋島",
-      "route": "海之日國定假日。汽車留在高松港，不開上島；船班與美術館預約是本日核心。",
+      "title": "7/20 一｜高松市區・屋島輕鬆日",
+      "subtitle": "屋島 → 栗林公園 → 玉藻公園 → 高松商店街 → 屋島",
+      "route": "海之日國定假日。取消離島船班，改以高松市區與屋島周邊為主；不綁預約，作為前後長移動日的緩衝。",
       "stops": [
-        { "time": "早上", "type": "alert", "title": "高松港周邊停車", "description": "至少比預定船班提早 45–60 分鐘抵達，假日需預留找停車位與步行時間。", "tags": [{ "text": "汽車留高松", "kind": "parking" }, { "text": "海之日", "kind": "warning" }], "actions": [{ "label": "導航港口", "icon": "navigation", "nav": "高松港旅客ターミナルビル" }, { "label": "船班官網", "icon": "ship", "url": "https://www.shikokukisen.com/", "kind": "secondary" }] },
-        { "time": "依船班", "title": "四國汽船・宮浦港", "description": "抵達後依預約時段安排島內巴士、步行或租借腳踏車。", "tags": [{ "text": "宮浦港" }, { "text": "留意末班船", "kind": "warning" }], "actions": [{ "label": "Google Maps", "icon": "map-pin", "nav": "直島 宮浦港" }] },
-        { "time": "預約時段", "title": "地中美術館", "description": "以預約入場時間作為全日行程錨點，避免島上交通延誤。", "tags": [{ "text": "網路預約制", "kind": "warning" }], "actions": [{ "label": "Google Maps", "icon": "map-pin", "nav": "地中美術館 直島" }, { "label": "官方資訊", "icon": "ticket-check", "url": "https://benesse-artsite.jp/art/chichu.html", "kind": "secondary" }] },
-        { "time": "下午", "title": "Benesse House Museum・南瓜作品", "description": "依體力安排美術館、戶外作品、黃南瓜與回宮浦港前的赤南瓜。", "tags": [{ "text": "藝術" }, { "text": "戶外防曬", "kind": "warning" }], "actions": [{ "label": "美術館", "icon": "map-pin", "nav": "Benesse House Museum Naoshima" }, { "label": "赤南瓜", "icon": "map-pin", "nav": "草間彌生 赤かぼちゃ 直島", "kind": "secondary" }] }
+        { "time": "09:00", "title": "栗林公園", "description": "早上先走高松代表庭園，避開正午暑熱。可停留 60–90 分鐘，依長輩體力調整步行範圍。", "tags": [{ "text": "高松代表景點" }, { "text": "早上優先", "kind": "warning" }, { "text": "周邊停車", "kind": "parking" }], "actions": [{ "label": "導航", "icon": "navigation", "nav": "栗林公園" }] },
+        { "time": "10:50", "title": "高松城跡・玉藻公園", "description": "海城遺跡與庭園短程散步，位置靠近高松港與市區，適合接在栗林公園後。", "tags": [{ "text": "海城遺跡" }, { "text": "短程散步" }, { "text": "市區停車", "kind": "parking" }], "actions": [{ "label": "導航", "icon": "navigation", "nav": "高松城跡 玉藻公園" }] },
+        { "time": "12:00", "type": "food", "title": "高松中央商店街・午餐", "description": "丸龜町、片原町一帶午餐與逛街。天氣太熱時可把下午前段改成室內商店街休息。", "tags": [{ "text": "午餐" }, { "text": "商店街" }, { "text": "避暑", "kind": "warning" }], "actions": [{ "label": "導航", "icon": "map-pin", "nav": "高松中央商店街" }] },
+        { "time": "14:10", "title": "高松 Symbol Tower・港區展望", "description": "視天候與體力短停，從高松港區看市區與瀨戶內海方向；若太熱或下雨可省略。", "tags": [{ "text": "展望" }, { "text": "港區" }, { "text": "可省略", "kind": "warning" }], "actions": [{ "label": "導航", "icon": "navigation", "nav": "高松シンボルタワー" }] },
+        { "time": "15:30", "type": "alert", "title": "屋島・獅子靈巖展望台", "description": "回到住宿附近的屋島山上，安排屋島寺、獅子靈巖展望台，看瀨戶內海與高松市區景色。", "tags": [{ "text": "住宿順路", "kind": "parking" }, { "text": "傍晚景色" }, { "text": "補水防曬", "kind": "warning" }], "actions": [{ "label": "導航", "icon": "navigation", "nav": "獅子の霊巌展望台" }, { "label": "屋島寺", "icon": "map-pin", "nav": "屋島寺", "kind": "secondary" }] },
+        { "time": "晚間", "type": "shopping", "title": "Yamada Denki・唐吉訶德屋島店", "description": "若體力足夠，晚間補購物；若前兩天已買齊或天氣炎熱，直接回飯店休息。", "tags": [{ "text": "購物備案", "kind": "shop" }, { "text": "不勉強" }], "actions": [{ "label": "Yamada", "icon": "monitor-smartphone", "nav": "Tecc LIFE SELECT 高松春日本店", "kind": "shop" }, { "label": "唐吉訶德", "icon": "shopping-cart", "nav": "ドン・キホーテ屋島店", "kind": "secondary" }] }
       ]
     },
     {
@@ -126,11 +128,11 @@ window.TRIP_DATA = {
     "notes": [
       { "icon": "badge-japanese-yen", "title": "高速與 ETC", "description": "確認租車是否附 ETC 卡；交流道依導航走 ETC 或一般車道，保留現金與信用卡備用。" },
       { "icon": "fuel", "title": "加油與還車", "description": "確認汽油種類。7/23 還車前加滿，收據留到完成驗車為止。" },
-      { "icon": "parking-circle", "title": "停車策略", "description": "直島日把車留高松港；松山市區固定停一次，再改用步行或路面電車。" }
+      { "icon": "parking-circle", "title": "停車策略", "description": "7/20 高松市區建議固定停車後步行串聯；屋島與松山市區也盡量減少移動車輛。" }
     ],
     "details": [
       { "icon": "shield-alert", "title": "右駕與夏季安全", "items": ["轉彎後提醒自己回到左側車道，路口特別注意。", "山路或窄路不勉強超車，導航若導入小路可改走較大的國道。", "每 90–120 分鐘安排休息；車內不可留下行李或電子產品曝曬。"] },
-      { "icon": "cloud-rain", "title": "雨天替代原則", "text": "鳴門強風或直島船班異動時，優先保留安全與預約；購物點可移到雨天，戶外景點縮短。" },
+      { "icon": "cloud-rain", "title": "雨天替代原則", "text": "鳴門強風或高松戶外景點受天候影響時，優先保留安全；購物點與商店街可移到雨天，戶外景點縮短。" },
       { "icon": "lock-keyhole", "title": "公開頁面隱私", "text": "GitHub Pages 是公開網站。不要加入護照、房號、訂房姓名、租車合約編號或私人電話。" }
     ]
   }
