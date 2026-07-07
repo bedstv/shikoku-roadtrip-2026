@@ -40,7 +40,7 @@
     </section>
 
     <section class="panel filters" aria-label="篩選附近景點">
-      <input class="search" id="searchInput" type="search" placeholder="搜尋：栗林、mont-bell、Snow Peak、道後、伴手禮..." />
+      <input class="search" id="searchInput" type="search" placeholder="搜尋：栗林、mont-bell、Snow Peak、道後、休息站、道之驛..." />
       <div class="chip-row" id="dayFilters" aria-label="依日期篩選"></div>
       <div class="chip-row" id="categoryFilters" aria-label="依分類篩選"></div>
     </section>
@@ -52,13 +52,13 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="./assets/lucide.min.js"></script>
-  <script src="./spots.js?v=202607070910"></script>
+  <script src="./spots.js?v=202607071025"></script>
   <script>
     const SPOTS = window.TRIP_SPOTS || [];
     const META = window.TRIP_SPOT_META || {};
     const state = { user: null, day: 'all', category: 'all', query: '' };
     const priorityRank = { fixed: 0, main: 1, backup: 2, optional: 3 };
-    const categoryOrder = ['all','sightseeing','food','shopping','souvenir','outdoor','hotel','transport','backup'];
+    const categoryOrder = ['all','sightseeing','food','shopping','souvenir','rest','roadside','outdoor','hotel','transport','backup'];
 
     function escapeHtml(value = '') {
       return String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
@@ -92,7 +92,8 @@
     }
     function buildFilters() {
       const days = ['all', ...Array.from(new Set(SPOTS.map(s => s.day).filter(Boolean))).sort((a, b) => a.localeCompare(b, 'zh-Hant'))];
-      const categories = categoryOrder.filter(cat => cat === 'all' || SPOTS.some(s => s.category === cat));
+      const dynamicCategories = Array.from(new Set(SPOTS.map(s => s.category).filter(Boolean))).filter(cat => !categoryOrder.includes(cat)).sort();
+      const categories = [...categoryOrder, ...dynamicCategories].filter(cat => cat === 'all' || SPOTS.some(s => s.category === cat));
       document.getElementById('dayFilters').innerHTML = days.map(day => `<button class="chip ${day === state.day ? 'active' : ''}" type="button" data-day="${escapeHtml(day)}">${day === 'all' ? '全部日期' : escapeHtml(day)}</button>`).join('');
       document.getElementById('categoryFilters').innerHTML = categories.map(cat => `<button class="chip ${cat === state.category ? 'active' : ''}" type="button" data-category="${escapeHtml(cat)}">${cat === 'all' ? '全部分類' : escapeHtml(categoryName(cat))}</button>`).join('');
     }
