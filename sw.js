@@ -1,4 +1,4 @@
-const CACHE = 'shikoku-roadtrip-2026-v14';
+const CACHE = 'shikoku-roadtrip-2026-v15';
 const ASSETS = [
   './',
   './index.html',
@@ -8,6 +8,7 @@ const ASSETS = [
   './data.js',
   './spots.js',
   './retail-spots.js',
+  './drugstore-spots.js',
   './manifest.webmanifest',
   './assets/naruto-strait.jpg',
   './assets/places/chichu-art-museum.jpg',
@@ -36,7 +37,7 @@ self.addEventListener('activate', event => {
 function shouldUseNetworkFirst(request) {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return false;
-  return url.pathname.endsWith('/') || url.pathname.endsWith('/index.html') || url.pathname.endsWith('/guide.html') || url.pathname.endsWith('/shopping.html') || url.pathname.endsWith('/nearby.html') || url.pathname.endsWith('/data.js') || url.pathname.endsWith('/spots.js') || url.pathname.endsWith('/retail-spots.js') || url.pathname.endsWith('/sw.js');
+  return url.pathname.endsWith('/') || url.pathname.endsWith('/index.html') || url.pathname.endsWith('/guide.html') || url.pathname.endsWith('/shopping.html') || url.pathname.endsWith('/nearby.html') || url.pathname.endsWith('/data.js') || url.pathname.endsWith('/spots.js') || url.pathname.endsWith('/retail-spots.js') || url.pathname.endsWith('/drugstore-spots.js') || url.pathname.endsWith('/sw.js');
 }
 
 self.addEventListener('fetch', event => {
