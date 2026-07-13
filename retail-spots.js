@@ -36,3 +36,7 @@ window.TRIP_SPOT_META = {
   updatedAt: "2026-07-07 14:10",
   version: "nearby spots v5 retail UNIQLO MUJI"
 };
+
+if (typeof document !== "undefined" && document.currentScript) {
+  document.write('<script src="./drugstore-spots.js?v=202607071435"><\/script>');
+}
