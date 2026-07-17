@@ -39,20 +39,20 @@
   </section>
 
   <main class="shell" id="top">
-    <div class="notice"><strong>使用方式：</strong>先看當天區塊，優先選「順路」與「備案」；店家營業時間、定休日與排隊狀況以 Google Maps 或官方資訊為準。</div>
+    <div class="notice"><strong>使用方式：</strong>先看當天區塊，優先選「順路」與「備案」。LILAY 請找「リレイ トリートメントバーム 40g」；分店庫存可能不同，出發前或到店時再確認。</div>
     <section class="section" aria-labelledby="quick-title">
       <div class="section-head"><div><h2 id="quick-title">分類速查</h2><p>想買伴手禮或臨時找吃的時候先看這排</p></div><span class="section-label">QUICK</span></div>
       <div class="category-row">
         <a class="category-pill" href="#day1">抵達日宵夜</a>
         <a class="category-pill" href="#day2">鳴門回程購物</a>
-        <a class="category-pill" href="#day3">直島咖啡</a>
+        <a class="category-pill" href="#day3">高松 Loft・LILAY</a>
         <a class="category-pill" href="#day4">琴平・丸龜</a>
-        <a class="category-pill" href="#day5">松山・道後</a>
+        <a class="category-pill" href="#day5">松山 LILAY・道後</a>
         <a class="category-pill" href="#souvenir">伴手禮總表</a>
       </div>
     </section>
     <div id="sections"></div>
-    <footer class="footer"><p>2026 四國自駕行｜吃買逛清單｜Google Maps 導航以實際交通與營業資訊為準</p></footer>
+    <footer class="footer"><p>2026 四國自駕行｜吃買逛清單｜LILAY 購買點更新：2026/07/17 23:58（台灣時間）</p></footer>
   </main>
 
   <div class="toast" id="toast" role="status" aria-live="polite">已開啟 Google Maps</div>
@@ -66,7 +66,7 @@
         route: '晚間抵達後以飯店附近、好停車、營業較晚為優先。若班機或取車延誤，直接回飯店休息。',
         items: [
           { type: 'shop', icon: 'shopping-cart', title: '唐吉訶德屋島店', desc: '抵達日最實用的補給點，可買零食、飲料、藥妝、旅途小物與宵夜。', tags: ['住宿附近', '停車方便', '晚間備案'], nav: 'ドン・キホーテ屋島店' },
-          { type: 'food', icon: 'drumstick', title: '骨付鳥 一鶴 高松店', desc: '香川名物骨付鳥，適合想吃正式晚餐時；抵達太晚就移到 7/19 或 7/21。', tags: ['香川名物', '晚餐', '可能排隊'], nav: '骨付鳥 一鶴 高松店' },
+          { type: 'food', icon: 'drumstick', title: '骨付鳥 一鶴 高松店', desc: '香川名物骨付鳥，適合想吃正式晚餐時；抵達太晚就移到 7/19 或 7/20。', tags: ['香川名物', '晚餐', '可能排隊'], nav: '骨付鳥 一鶴 高松店' },
           { type: 'food', icon: 'utensils', title: '讚岐うどん わら家', desc: '屋島代表性烏龍麵店，較適合白天或隔日安排，不建議硬塞抵達夜。', tags: ['屋島', '讚岐烏龍麵', '白天優先'], nav: '讃岐うどん わら家' }
         ]
       },
@@ -86,13 +86,14 @@
       {
         id: 'day3',
         tab: '7/20',
-        title: '7/20 一｜直島藝術日',
-        route: '車留高松港，島上以步行、巴士或租車/腳踏車移動。餐廳座位有限，午餐與咖啡要保留彈性。',
+        title: '7/20 一｜高松市區・屋島輕鬆日',
+        route: '栗林公園、玉藻公園後進入高松中央商店街；先逛丸龜町的高松 Loft，再依時間到高松站直結的 ORNE Loft。兩間高松店皆須現場確認 LILAY 庫存。',
         items: [
-          { type: 'food', icon: 'coffee', title: '宮浦港周邊咖啡・輕食', desc: '上島後或回船前最穩的休息點，適合買飲料、甜點、簡單午餐。', tags: ['宮浦港', '船班前後', '休息'], nav: '直島 宮浦港 カフェ' },
-          { type: 'food', icon: 'utensils', title: '本村地區町家咖啡與午餐', desc: '若行程走到家計畫／本村，可把午餐排在老屋咖啡或定食店。', tags: ['本村', '町家', '午餐備案'], nav: '直島 本村 ランチ' },
-          { type: 'souvenir', icon: 'palette', title: 'Benesse House Museum Shop', desc: '藝術書、明信片、設計小物與直島感較強的伴手禮，適合比一般零食更有紀念性。', tags: ['藝術伴手禮', '美術館商店'], nav: 'Benesse House Museum Shop Naoshima' },
-          { type: 'break', icon: 'ship', title: '高松港・Sunport 周邊', desc: '回高松後若還有體力，可在港邊、Sunport 或車站周邊吃晚餐再回屋島。', tags: ['回高松後', '晚餐備案'], nav: '高松港 サンポート高松 レストラン' }
+          { type: 'food', icon: 'utensils', title: '高松中央商店街・丸龜町午餐', desc: '丸龜町、片原町一帶適合午餐與避暑，吃完直接步行前往丸龜町 Green 的高松 Loft。', tags: ['午餐', '商店街', '室內避暑'], nav: '高松中央商店街' },
+          { type: 'shop', icon: 'sparkles', title: '高松 Loft｜LILAY 第一站', desc: '丸龜町 Green 西館 3F，通常 11:00–20:00。就在中央商店街動線內，先詢問「リレイ トリートメントバーム 40g」；LILAY 官方經銷頁未列此分店，庫存須確認。', tags: ['LILAY', '最順路', '丸龜町', '庫存確認'], nav: '高松ロフト 丸亀町グリーン' },
+          { type: 'shop', icon: 'sparkles', title: '高松 ORNE Loft｜LILAY 備選', desc: 'JR 高松站直結，高松 ORNE 北館 2F，通常 10:00–20:00。可接玉藻公園、港區與 Symbol Tower；LILAY 庫存同樣須現場詢問。', tags: ['LILAY', '高松站直結', '港區順路', '庫存確認'], nav: '高松オルネロフト' },
+          { type: 'break', icon: 'ship', title: '高松站・Sunport 周邊', desc: '玉藻公園與港區行程之間可休息、喝咖啡或吃甜點；逛完 ORNE Loft 再前往 Symbol Tower 很順。', tags: ['高松站', '港區', '休息'], nav: '高松駅 サンポート高松' },
+          { type: 'food', icon: 'drumstick', title: '骨付鳥 一鶴 高松店', desc: '高松市區日晚餐備案，香川名物骨付鳥；若不想在市區久留，也可改去住宿附近的屋島店。', tags: ['香川名物', '晚餐備案'], nav: '骨付鳥 一鶴 高松店' }
         ]
       },
       {
@@ -113,12 +114,14 @@
         id: 'day5',
         tab: '7/22',
         title: '7/22 三｜松山城・大街道・道後',
-        route: '市區日以停一次車、步行逛大街道與銀天街為主。晚餐與伴手禮放道後最舒服。',
+        route: '先走松山城、大街道與銀天街。Hands 松山店可順著商店街走到松山市站；松山 Loft 是 LILAY 官方列名經銷點，但在郊區 Emifull MASAKI，需另外開車前往。',
         items: [
           { type: 'food', icon: 'fish', title: '鄉土料理 五志喜', desc: '松山鄉土料理選項，想吃鯛飯、五色素麵等在地菜時可列入午餐或晚餐。', tags: ['松山鄉土料理', '鯛飯'], nav: '郷土料理 五志喜 松山' },
           { type: 'food', icon: 'fish', title: 'かどや 大街道店', desc: '宇和島鯛めし與愛媛料理，位置適合接大街道逛街。', tags: ['鯛めし', '大街道'], nav: 'かどや 大街道店' },
           { type: 'shop', icon: 'shopping-cart', title: '唐吉訶德松山大街道店', desc: '排在大街道步行動線中，買零食、藥妝、日用品很方便。', tags: ['大街道', '藥妝零食'], nav: 'ドン・キホーテ松山大街道店' },
           { type: 'shop', icon: 'store', title: '大街道・銀天街', desc: '松山市中心主要商店街，雨天也好走，適合咖啡、藥妝、衣物與伴手禮。', tags: ['逛街', '雨天備案'], nav: '松山 大街道 銀天街' },
+          { type: 'shop', icon: 'sparkles', title: 'Hands 松山店｜LILAY 詢問點', desc: '位於伊予鐵高島屋本館 7F，通常 10:00–19:00，松山市站直結。可沿銀天街走到這裡詢問 LILAY，但官方經銷頁未列 Hands 松山店，不能保證有貨。', tags: ['LILAY', '松山市站', '順路詢問', '庫存不保證'], nav: 'ハンズ松山店' },
+          { type: 'shop', icon: 'badge-check', title: '松山 Loft｜LILAY 最有把握', desc: 'LILAY 官方經銷頁列名門市，位於 Emifull MASAKI 1F，通常 10:00–21:00。它不在松山市中心，建議先電話確認 Treatment Balm 40g 庫存，再決定是否開車前往。', tags: ['LILAY 官方經銷', '優先確認', '需開車', 'Emifull MASAKI'], nav: '松山ロフト エミフルMASAKI' },
           { type: 'souvenir', icon: 'gift', title: '一六本舗 道後店', desc: '一六タルト是愛媛代表伴手禮，住道後時步行買最順。', tags: ['愛媛伴手禮', '道後'], nav: '一六本舗 道後店' },
           { type: 'souvenir', icon: 'package', title: '道後ハイカラ通り', desc: '道後溫泉商店街，買坊っちゃん団子、蜜柑果凍、今治毛巾與溫泉小物。', tags: ['道後商店街', '伴手禮'], nav: '道後ハイカラ通り' },
           { type: 'break', icon: 'beer', title: '道後麥酒館', desc: '泡湯前後可安排啤酒、點心或晚餐；不開車移動時比較適合。', tags: ['步行', '晚餐備案'], nav: '道後麦酒館' }
@@ -128,7 +131,7 @@
         id: 'day6',
         tab: '7/23',
         title: '7/23 四｜松山 → 高松機場',
-        route: '回程日避免繞路，購物只放交流道附近、休息站與機場。還車前先加油。',
+        route: '回程日避免繞路，購物只放交流道附近、休息站與機場。還車前先加油。若前一天未買到 LILAY，不建議臨時繞 Emifull MASAKI 而壓縮機場緩衝。',
         items: [
           { type: 'shop', icon: 'shirt', title: 'WORKMAN Plus 松山交流道店', desc: '最後補買機能服、雨具、鞋襪。逛完直接上高速最順。', tags: ['最後補買', '交流道旁'], nav: 'WORKMAN Plus 松山インター店' },
           { type: 'souvenir', icon: 'package', title: '石鎚山 SA／豐浜 SA', desc: '高速休息站適合補買四國零食、飲料、柑橘點心與上車前休息。', tags: ['高速休息', '伴手禮補買'], nav: '石鎚山サービスエリア' },
