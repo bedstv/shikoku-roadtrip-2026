@@ -13,8 +13,8 @@ window.TRIP_DATA = {
     "eyebrow": "6 DAYS · 5 NIGHTS · SELF DRIVE",
     "heroTitle": "瀨戶內海到道後溫泉的夏日公路旅行",
     "heroText": "以住宿與實際車程為核心，提供每日停靠順序、停車提醒及 Google Maps 一鍵自駕導航。",
-    "updatedAt": "2026-07-07 09:15",
-    "version": "附近景點 v10",
+    "updatedAt": "2026-07-19 01:00",
+    "version": "鳴門當日調整 v11",
     "photoCreditText": "Soramimi / Wikimedia Commons，CC BY-SA 4.0",
     "photoCreditUrl": "https://commons.wikimedia.org/wiki/File:Naruto_Strait_from_Uzunomichi_Promenade.jpg",
     "disclaimer": "現場時間、船班、潮汐與交通狀況以官方資訊及 Google Maps 為準。"
@@ -54,14 +54,20 @@ window.TRIP_DATA = {
       "tab": "7/19",
       "number": "D2",
       "title": "7/19 日｜鳴門海峽一日遊",
-      "subtitle": "屋島 → 鳴門公園 → 屋島購物",
-      "route": "觀潮時間優先於固定時刻。出發前以渦之道官方潮見表調整抵達時間。",
+      "subtitle": "屋島 → 觀潮船 → 鳴門公園 → 道の駅くるくるなると → 高松",
+      "route": "今天上午先主攻 09:40 渦潮；15:40 大潮雖漂亮但午後有雷雨風險，只作為天氣穩定時的加碼。中午前後人潮與停車可能較多，導航以停車點為主。",
       "stops": [
-        { "time": "上午", "title": "大鳴門橋遊步道・渦之道", "description": "先看潮汐，再倒推飯店出發時間。鳴門公園停車後步行前往。", "tags": [{ "text": "鳴門公園停車", "kind": "parking" }, { "text": "依潮汐調整", "kind": "warning" }], "actions": [{ "label": "導航", "icon": "navigation", "nav": "大鳴門橋遊歩道 渦の道" }, { "label": "潮汐資訊", "icon": "waves", "url": "https://www.uzunomichi.jp/", "kind": "secondary" }] },
-        { "time": "接續", "title": "鳴門山展望台", "description": "與渦之道同區域，安排海峽全景與短程散步。", "tags": [{ "text": "展望台" }, { "text": "夏季補水", "kind": "warning" }], "actions": [{ "label": "導航", "icon": "navigation", "nav": "鳴門山展望台" }] },
-        { "time": "18:00 前", "type": "shopping", "title": "WORKMAN Plus 高松十川東店", "description": "鳴門回程改逛 WORKMAN Plus 店型，20:00 關門；想買防曬、機能服與鞋類可多留時間。", "tags": [{ "text": "優先購物", "kind": "shop" }, { "text": "16 個車位", "kind": "parking" }], "actions": [{ "label": "導航", "icon": "shopping-bag", "nav": "WORKMAN Plus 高松十川東店", "kind": "shop" }] },
-        { "time": "備選", "type": "shopping", "title": "Yamada Denki 高松春日本店", "description": "四國沒有 Bic Camera，這間是住宿附近的大型免稅家電替代店，營業至 21:00。", "tags": [{ "text": "家電", "kind": "shop" }, { "text": "免稅", "kind": "shop" }], "actions": [{ "label": "導航", "icon": "monitor-smartphone", "nav": "Tecc LIFE SELECT 高松春日本店", "kind": "shop" }] },
-        { "time": "晚間", "type": "shopping", "title": "唐吉訶德屋島店", "description": "Workman 關門後再逛；若 7/18 已完成可直接回飯店。", "tags": [{ "text": "營業至 02:00", "kind": "shop" }], "actions": [{ "label": "導航", "icon": "shopping-cart", "nav": "ドン・キホーテ屋島店", "kind": "shop" }] }
+        { "time": "07:45", "type": "alert", "title": "Hotel Route Inn Takamatsu Yashima 出發", "description": "早餐後直接往鳴門。今天以 09:40 觀潮船為第一優先，車程保留休息與停車緩衝。", "tags": [{ "text": "早點出發", "kind": "warning" }, { "text": "高速移動" }], "actions": [{ "label": "導航至觀潮船停車場", "icon": "navigation", "nav": "うずしお観潮船 駐車場" }] },
+        { "time": "09:10", "title": "うずしお観潮船・亀浦観光港停車", "description": "大型觀潮船 Wonder Naruto 不需預約；到現場購票即可。建議 09:40 班前至少 30 分鐘抵達，停免費停車場、上廁所並確認是否正常出航。", "tags": [{ "text": "免費停車約150台", "kind": "parking" }, { "text": "現場買票", "kind": "warning" }], "actions": [{ "label": "停車導航", "icon": "parking-circle", "nav": "うずしお観潮船 駐車場" }, { "label": "官方船班", "icon": "waves", "url": "https://www.uzusio.com/", "kind": "secondary" }] },
+        { "time": "09:40", "title": "大型觀潮船 Wonder Naruto", "description": "船程約 30 分鐘，今天上午 09:40 是滿潮見頃。若遇強風、雷雨或停航，現場改以渦之道與 EDDY 為主。", "tags": [{ "text": "渦潮核心", "kind": "warning" }, { "text": "船票現場處理" }], "actions": [{ "label": "觀潮船導航", "icon": "ship", "nav": "うずしお観潮船" }, { "label": "潮見表", "icon": "waves", "url": "https://www.uzusio.com/siomi/", "kind": "secondary" }] },
+        { "time": "10:30", "title": "鳴門公園停車 → 渦之道・EDDY", "description": "從觀潮船移動到鳴門公園，導航請設大鳴門橋架橋記念館 EDDY 或鳴門公園第1駐車場，不要直接設渦之道，避免被導到錯誤位置。", "tags": [{ "text": "鳴門公園第1駐車場", "kind": "parking" }, { "text": "普通車500円", "kind": "parking" }], "actions": [{ "label": "導航到停車場", "icon": "parking-circle", "nav": "鳴門公園第1駐車場" }, { "label": "導航 EDDY", "icon": "navigation", "nav": "大鳴門橋架橋記念館 エディ" }] },
+        { "time": "10:45", "title": "大鳴門橋遊步道・渦之道", "description": "從橋上看鳴門海峽與渦潮。夏季日曬強，橋上與步道仍需補水；若要順看 EDDY，可在現場買共通券。", "tags": [{ "text": "步行約5分鐘" }, { "text": "共通券可考慮", "kind": "warning" }], "actions": [{ "label": "渦之道官方", "icon": "external-link", "url": "https://www.uzunomichi.jp/", "kind": "secondary" }] },
+        { "time": "12:00", "type": "food", "title": "道の駅 くるくるなると・午餐與伴手禮", "description": "排入午餐、鳴門金時甜點與伴手禮。今天 7/18–7/20 有夏季活動，可能比平常熱鬧；若正停車尖峰，可改先吃簡餐或外帶。", "tags": [{ "text": "普通車約268台", "kind": "parking" }, { "text": "9:00–17:00" }, { "text": "午餐・伴手禮", "kind": "shop" }], "actions": [{ "label": "停車導航", "icon": "parking-circle", "nav": "道の駅くるくるなると 駐車場" }, { "label": "官方網站", "icon": "external-link", "url": "https://www.kurukurunaruto.com/", "kind": "secondary" }] },
+        { "time": "13:30", "type": "alert", "title": "午後彈性：大塚國際美術館／回鳴門公園補景", "description": "15:00–16:00 有雷雨風險。若天氣變差，直接改大塚國際美術館避暑避雨；若天氣穩且大家還有精神，再考慮回鳴門公園或補 15:40 大潮。", "tags": [{ "text": "雨備", "kind": "warning" }, { "text": "不要硬拚雷雨" }], "actions": [{ "label": "大塚美術館", "icon": "building-2", "nav": "大塚国際美術館" }, { "label": "回鳴門公園", "icon": "navigation", "nav": "大鳴門橋架橋記念館 エディ", "kind": "secondary" }] },
+        { "time": "15:40", "type": "alert", "title": "天氣穩才加碼：下午大潮時段", "description": "今天 15:40 是干潮大潮，理論上很漂亮；但剛好接近午後雷雨時段，只有現場天氣穩、船班正常、家人狀態 OK 才加碼。", "tags": [{ "text": "加碼選項", "kind": "warning" }, { "text": "雷雨就取消", "kind": "warning" }], "actions": [{ "label": "觀潮船停車", "icon": "parking-circle", "nav": "うずしお観潮船 駐車場" }, { "label": "渦之道停車", "icon": "parking-circle", "nav": "鳴門公園第1駐車場", "kind": "secondary" }] },
+        { "time": "17:00", "title": "回高松・屋島住宿", "description": "依天氣與體力回高松。若午後雷雨或已逛足，直接回飯店休息；不要勉強再塞購物點。", "tags": [{ "text": "回程安全" }, { "text": "彈性取消購物", "kind": "warning" }], "actions": [{ "label": "導航住宿", "icon": "navigation", "nav": "ホテルルートイン高松屋島" }] },
+        { "time": "備選", "type": "shopping", "title": "WORKMAN Plus 高松十川東店", "description": "只有回程順、時間早且家人還有體力才停靠；不應壓縮晚餐與休息。", "tags": [{ "text": "購物備案", "kind": "shop" }, { "text": "16 個車位", "kind": "parking" }], "actions": [{ "label": "導航", "icon": "shopping-bag", "nav": "WORKMAN Plus 高松十川東店", "kind": "shop" }] },
+        { "time": "晚間", "type": "shopping", "title": "唐吉訶德屋島店", "description": "若 7/18 未逛且今天回飯店後仍有體力，再安排。", "tags": [{ "text": "營業至02:00", "kind": "shop" }, { "text": "住宿附近" }], "actions": [{ "label": "導航", "icon": "shopping-cart", "nav": "ドン・キホーテ屋島店", "kind": "shop" }] }
       ]
     },
     {
@@ -129,7 +135,7 @@ window.TRIP_DATA = {
     "notes": [
       { "icon": "badge-japanese-yen", "title": "高速與 ETC", "description": "確認租車是否附 ETC 卡；交流道依導航走 ETC 或一般車道，保留現金與信用卡備用。" },
       { "icon": "fuel", "title": "加油與還車", "description": "確認汽油種類。7/23 還車前加滿，收據留到完成驗車為止。" },
-      { "icon": "parking-circle", "title": "停車策略", "description": "7/20 高松市區建議固定停車後步行串聯；屋島與松山市區也盡量減少移動車輛。" }
+      { "icon": "parking-circle", "title": "停車策略", "description": "7/19 鳴門請優先導航到停車點：觀潮船停うずしお観潮船 駐車場，渦之道停鳴門公園第1駐車場或設大鳴門橋架橋記念館エディ。" }
     ],
     "details": [
       { "icon": "shield-alert", "title": "右駕與夏季安全", "items": ["轉彎後提醒自己回到左側車道，路口特別注意。", "山路或窄路不勉強超車，導航若導入小路可改走較大的國道。", "每 90–120 分鐘安排休息；車內不可留下行李或電子產品曝曬。"] },
