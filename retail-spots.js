@@ -43,5 +43,5 @@ const brandSearchInput = typeof document !== "undefined" ? document.getElementBy
 if (brandSearchInput) brandSearchInput.placeholder = brandSearchPlaceholder;
 
 if (typeof document !== "undefined" && document.currentScript) {
-  document.write('<script src="./drugstore-spots.js?v=202607071435"><\/script><script src="./lilay-spots.js?v=202607180009"><\/script><script src="./tonkatsu-spots.js?v=202607180043"><\/script>');
+  document.write('<script src="./drugstore-spots.js?v=202607071435"><\/script><script src="./lilay-spots.js?v=202607180009"><\/script><script src="./tonkatsu-spots.js?v=202607180043"><\/script><script src="./fashion-spots.js?v=202607190751"><\/script>');
 }
